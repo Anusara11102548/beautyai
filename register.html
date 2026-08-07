@@ -1,0 +1,243 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Create your BeautyAI account to start your personalized beauty analysis journey." />
+  <title>Create Account — BeautyAI</title>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4/dist/full.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/custom.css" />
+  <script>/* Tailwind CDN - dev only */</script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body style="margin:0;padding:0;">
+
+  <div id="navbar-container"></div>
+
+  <div class="auth-layout">
+
+    <!-- Left decorative panel -->
+    <div class="auth-panel-left">
+      <div style="position:absolute;top:-80px;right:-80px;width:320px;height:320px;border-radius:50%;background:rgba(249,168,212,0.08);pointer-events:none;"></div>
+      <div style="position:absolute;bottom:-60px;left:-60px;width:240px;height:240px;border-radius:50%;background:rgba(139,92,246,0.08);pointer-events:none;"></div>
+
+      <a href="index.html" style="display:flex;align-items:center;gap:0.5rem;margin-bottom:2.5rem;text-decoration:none;" style="text-decoration:none;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="url(#lg-reg)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <defs><linearGradient id="lg-reg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#F9A8D4"/><stop offset="100%" stop-color="#C084FC"/></linearGradient></defs>
+          <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/>
+        </svg>
+        <span style="font-family:'Lora',serif;font-weight:700;font-size:1.5rem;color:#fff;">BeautyAI</span>
+      </a>
+
+      <h1 style="font-family:'Lora',serif;font-weight:700;font-size:2.25rem;color:#fff;line-height:1.25;margin:0 0 0.875rem;">Start Your Beauty Journey</h1>
+      <p style="font-family:'Raleway',sans-serif;color:rgba(255,255,255,0.68);font-size:1rem;margin:0 0 2.5rem;line-height:1.7;">Join thousands discovering their perfect look</p>
+
+      <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:1.125rem;">
+        <li style="display:flex;align-items:center;gap:0.875rem;">
+          <span style="flex-shrink:0;width:2rem;height:2rem;border-radius:50%;background:rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F9A8D4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          <span style="font-family:'Raleway',sans-serif;color:rgba(255,255,255,0.85);font-size:0.9375rem;font-weight:500;">Free face analysis</span>
+        </li>
+        <li style="display:flex;align-items:center;gap:0.875rem;">
+          <span style="flex-shrink:0;width:2rem;height:2rem;border-radius:50%;background:rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F9A8D4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          <span style="font-family:'Raleway',sans-serif;color:rgba(255,255,255,0.85);font-size:0.9375rem;font-weight:500;">Personalized cosmetic picks</span>
+        </li>
+        <li style="display:flex;align-items:center;gap:0.875rem;">
+          <span style="flex-shrink:0;width:2rem;height:2rem;border-radius:50%;background:rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F9A8D4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          <span style="font-family:'Raleway',sans-serif;color:rgba(255,255,255,0.85);font-size:0.9375rem;font-weight:500;">Save &amp; track your results</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Right form panel -->
+    <div class="auth-panel-right">
+      <div class="auth-card">
+
+        <a href="index.html" style="display:flex;align-items:center;gap:0.5rem;justify-content:center;margin-bottom:1.5rem;text-decoration:none;" style="text-decoration:none;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="url(#rg-reg)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <defs><linearGradient id="rg-reg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#EC4899"/><stop offset="100%" stop-color="#8B5CF6"/></linearGradient></defs>
+            <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/>
+          </svg>
+          <span style="font-family:'Lora',serif;font-weight:700;font-size:1.375rem;" class="gradient-text">BeautyAI</span>
+        </a>
+
+        <div style="text-align:center;margin-bottom:1.75rem;">
+          <h2 style="font-family:'Lora',serif;font-weight:700;font-size:1.625rem;color:#1e1b4b;margin:0 0 0.375rem;">Create your account</h2>
+          <p style="font-family:'Raleway',sans-serif;color:#64748b;font-size:0.9rem;margin:0;">It's free — no credit card required</p>
+        </div>
+
+        <form id="register-form" novalidate>
+
+          <div style="margin-bottom:1rem;">
+            <label class="label-beauty" for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="beautylover123"
+              class="input-beauty" autocomplete="username" required />
+            <p id="username-error" class="text-error text-xs mt-1 hidden"></p>
+          </div>
+
+          <div style="margin-bottom:1rem;">
+            <label class="label-beauty" for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="your@email.com"
+              class="input-beauty" autocomplete="email" required />
+            <p id="email-error" class="text-error text-xs mt-1 hidden"></p>
+          </div>
+
+          <div style="margin-bottom:0.5rem;">
+            <label class="label-beauty" for="password">Password</label>
+            <div style="position:relative;">
+              <input type="password" id="password" name="password" placeholder="Min. 8 characters"
+                class="input-beauty" style="padding-right:3rem;" autocomplete="new-password" required />
+              <button type="button" id="toggle-password" aria-label="Toggle password visibility"
+                style="position:absolute;right:0.875rem;top:50%;transform:translateY(-50%);background:none;border:none;padding:0;color:#94a3b8;cursor:pointer;transition:color 200ms;display:flex;align-items:center;"
+                onmouseenter="this.style.color='#64748b'" onmouseleave="this.style.color='#94a3b8'">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                  <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                </svg>
+              </button>
+            </div>
+            <div id="password-strength" style="margin-top:0.375rem;"></div>
+          </div>
+
+          <div style="margin-bottom:1.25rem;">
+            <label class="label-beauty" for="confirm-password">Confirm Password</label>
+            <input type="password" id="confirm-password" name="confirm-password" placeholder="Re-enter your password"
+              class="input-beauty" autocomplete="new-password" required />
+            <p id="confirm-error" class="text-error text-xs mt-1 hidden"></p>
+          </div>
+
+          <div style="margin-bottom:1.5rem;">
+            <label style="display:flex;align-items:flex-start;gap:0.625rem;cursor:pointer;user-select:none;">
+              <input type="checkbox" id="terms"
+                style="width:1rem;height:1rem;border-radius:3px;accent-color:#EC4899;cursor:pointer;margin-top:0.125rem;flex-shrink:0;" required />
+              <span style="font-family:'Raleway',sans-serif;font-size:0.875rem;color:#475569;line-height:1.55;">
+                I agree to the
+                <a href="about.html#terms" style="color:#EC4899;font-weight:600;text-decoration:none;cursor:pointer;" onmouseenter="this.style.textDecoration='underline'" onmouseleave="this.style.textDecoration='none'">Terms of Service</a>
+                and
+                <a href="about.html#privacy" style="color:#EC4899;font-weight:600;text-decoration:none;cursor:pointer;" onmouseenter="this.style.textDecoration='underline'" onmouseleave="this.style.textDecoration='none'">Privacy Policy</a>
+              </span>
+            </label>
+          </div>
+
+          <button type="submit" id="register-btn"
+            style="width:100%;padding:0.875rem;border-radius:0.75rem;background:linear-gradient(135deg,#EC4899,#c026d3,#8B5CF6);color:#fff;border:none;font-family:'Raleway',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;transition:opacity 200ms,box-shadow 200ms;box-shadow:0 4px 14px rgba(236,72,153,0.28);min-height:3rem;display:flex;align-items:center;justify-content:center;gap:0.5rem;"
+            onmouseenter="this.style.opacity='0.88';this.style.boxShadow='0 6px 20px rgba(236,72,153,0.40)'"
+            onmouseleave="this.style.opacity='1';this.style.boxShadow='0 4px 14px rgba(236,72,153,0.28)'">
+            Create Account
+          </button>
+        </form>
+
+        <p style="text-align:center;font-family:'Raleway',sans-serif;font-size:0.875rem;color:#64748b;margin-top:1.5rem;">
+          Already have an account?
+          <a href="login.html" style="color:#EC4899;font-weight:700;text-decoration:none;margin-left:0.25rem;cursor:pointer;"
+            onmouseenter="this.style.textDecoration='underline'" onmouseleave="this.style.textDecoration='none'">Sign in</a>
+        </p>
+
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-container" class="toast toast-top toast-end z-[9999] gap-2"></div>
+
+  <script type="module">
+    import { initNavbar } from './components/navbar.js';
+    import { register, redirectIfAuthenticated } from './js/auth.js';
+    import { toast } from './js/toast.js';
+    import { validateEmail, validatePassword, validatePasswordMatch, validateUsername, renderPasswordStrength } from './js/validation.js';
+
+    initNavbar();
+    redirectIfAuthenticated('dashboard.html');
+
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    window.__toast = toast;
+
+    const toggleBtn = document.getElementById('toggle-password');
+    const passwordInput = document.getElementById('password');
+    toggleBtn?.addEventListener('click', () => {
+      const wasPassword = passwordInput.type === 'password';
+      passwordInput.type = wasPassword ? 'text' : 'password';
+      passwordInput.style.letterSpacing = wasPassword ? 'normal' : '0.2em';
+      passwordInput.style.fontFamily = wasPassword ? "'Raleway', sans-serif" : 'Verdana, sans-serif';
+    });
+
+    passwordInput?.addEventListener('input', () => {
+      const { strength } = validatePassword(passwordInput.value);
+      if (passwordInput.value.length > 0) renderPasswordStrength('password-strength', strength);
+      else document.getElementById('password-strength').innerHTML = '';
+    });
+
+    function showFieldError(id, msg) {
+      const el = document.getElementById(id); if (el) { el.textContent = msg; el.classList.remove('hidden'); }
+      const input = document.getElementById(id.replace('-error', '')); input?.classList.add('input-error');
+    }
+    function clearFieldError(id) {
+      const el = document.getElementById(id); if (el) { el.textContent = ''; el.classList.add('hidden'); }
+      const input = document.getElementById(id.replace('-error', '')); input?.classList.remove('input-error');
+    }
+
+    document.getElementById('username')?.addEventListener('blur', () => {
+      const res = validateUsername(document.getElementById('username').value);
+      if (!res.valid) showFieldError('username-error', res.message); else clearFieldError('username-error');
+    });
+    document.getElementById('email')?.addEventListener('blur', () => {
+      const res = validateEmail(document.getElementById('email').value);
+      if (!res.valid) showFieldError('email-error', res.message); else clearFieldError('email-error');
+    });
+    document.getElementById('confirm-password')?.addEventListener('blur', () => {
+      const res = validatePasswordMatch(document.getElementById('password').value, document.getElementById('confirm-password').value);
+      if (!res.valid) showFieldError('confirm-error', res.message); else clearFieldError('confirm-error');
+    });
+
+    const form = document.getElementById('register-form');
+    const btn = document.getElementById('register-btn');
+
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const username = document.getElementById('username').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirm-password').value;
+      const terms = document.getElementById('terms').checked;
+
+      const uv = validateUsername(username); if (!uv.valid) { toast.error(uv.message); return; }
+      const ev = validateEmail(email); if (!ev.valid) { toast.error(ev.message); return; }
+      const pv = validatePassword(password); if (!pv.valid) { toast.error(pv.message); return; }
+      const mv = validatePasswordMatch(password, confirmPassword); if (!mv.valid) { toast.error(mv.message); return; }
+      if (!terms) { toast.error('Please accept the Terms of Service.'); return; }
+
+      btn.disabled = true;
+      const originalHTML = btn.innerHTML;
+      btn.innerHTML = '<span class="loading loading-spinner loading-sm"></span>';
+      btn.style.opacity = '0.75';
+
+      try {
+        const result = await register(email, password, username);
+        const user = result?.user;
+        if (user?.identities?.length === 0) {
+          toast.error('An account with this email already exists.');
+          btn.disabled = false; btn.innerHTML = originalHTML; btn.style.opacity = '1'; return;
+        }
+        if (result?.session) {
+          toast.success('Account created! Welcome to BeautyAI');
+          setTimeout(() => { window.location.href = 'dashboard.html'; }, 800);
+        } else {
+          toast.success('Account created! Please check your email to confirm.');
+          setTimeout(() => { window.location.href = 'login.html'; }, 2500);
+        }
+      } catch (err) {
+        const msg = err.message?.includes('already registered') || err.message?.includes('already been registered')
+          ? 'Email is already in use.' : err.message || 'Registration failed. Please try again.';
+        toast.error(msg);
+        btn.disabled = false; btn.innerHTML = originalHTML; btn.style.opacity = '1';
+      }
+    });
+  </script>
+</body>
+</html>

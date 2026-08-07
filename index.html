@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AI-powered beauty advisor that analyzes your face and recommends personalized cosmetics based on your skin tone, undertone, and face shape." />
+  <title>BeautyAI — Your Personal Beauty Advisor</title>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4/dist/full.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/custom.css" />
+  <script>/* Tailwind CDN - dev only */</script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    @media (min-width: 1024px) {
+      #hero-grid { grid-template-columns: 1fr 1fr !important; }
+    }
+  </style>
+</head>
+<body style="background-color:#FDF2F8;">
+
+<div id="navbar-container"></div>
+
+<!-- ── Hero ─────────────────────────────────────────────────── -->
+<section style="background:radial-gradient(ellipse at 65% 35%,rgba(236,72,153,0.12) 0%,transparent 55%),radial-gradient(ellipse at 10% 75%,rgba(139,92,246,0.09) 0%,transparent 50%),#FDF2F8;min-height:92vh;display:flex;align-items:center;" aria-label="Hero">
+  <div class="page-container" style="width:100%;padding-top:4rem;padding-bottom:4rem;">
+    <div id="hero-grid" style="display:grid;grid-template-columns:1fr;gap:3rem;align-items:center;">
+
+      <!-- Left content -->
+      <div>
+        <div class="beauty-badge" style="margin-bottom:1.25rem;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+          Smart Beauty Analysis
+        </div>
+
+        <h1 style="font-family:'Lora',serif;font-size:clamp(2.25rem,5vw,3.5rem);font-weight:700;line-height:1.15;color:#1e1b4b;margin:0 0 1.25rem;">
+          Discover Your<br/>
+          <span class="gradient-text">Perfect Beauty</span><br/>
+          Look
+        </h1>
+
+        <p style="font-family:'Raleway',sans-serif;font-size:1.0625rem;color:#475569;line-height:1.75;margin:0 0 2rem;max-width:480px;">
+          อัปโหลดรูปภาพและรับคำแนะนำเครื่องสำอางที่เหมาะกับคุณ ตามสีผิว อันเดอร์โทน และรูปทรงใบหน้าของคุณโดยเฉพาะ
+        </p>
+
+        <div style="display:flex;flex-wrap:wrap;gap:0.875rem;align-items:center;">
+          <button id="cta-btn" onclick="handleCTA()" class="btn-beauty-primary" style="font-size:1rem;padding:0.875rem 1.75rem;">
+            Get Started Free
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:1rem;margin-top:1.75rem;">
+          <div style="display:flex;">
+            <img src="https://i.pravatar.cc/40?img=47" alt="" aria-hidden="true"
+              style="width:2.25rem;height:2.25rem;border-radius:50%;border:2px solid #fff;object-fit:cover;box-shadow:0 1px 4px rgba(0,0,0,0.12);" />
+            <img src="https://i.pravatar.cc/40?img=32" alt="" aria-hidden="true"
+              style="width:2.25rem;height:2.25rem;border-radius:50%;border:2px solid #fff;object-fit:cover;margin-left:-0.625rem;box-shadow:0 1px 4px rgba(0,0,0,0.12);" />
+            <img src="https://i.pravatar.cc/40?img=29" alt="" aria-hidden="true"
+              style="width:2.25rem;height:2.25rem;border-radius:50%;border:2px solid #fff;object-fit:cover;margin-left:-0.625rem;box-shadow:0 1px 4px rgba(0,0,0,0.12);" />
+          </div>
+          <div>
+            <div style="display:flex;align-items:center;gap:0.25rem;margin-bottom:0.125rem;">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="#f59e0b" stroke="none" aria-hidden="true"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="#f59e0b" stroke="none" aria-hidden="true"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="#f59e0b" stroke="none" aria-hidden="true"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="#f59e0b" stroke="none" aria-hidden="true"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="#f59e0b" stroke="none" aria-hidden="true"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+            </div>
+            <p style="font-family:'Raleway',sans-serif;font-size:0.8125rem;color:#64748b;margin:0;">ใช้ฟรี ไม่ต้องใช้บัตรเครดิต</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right demo card -->
+      <div style="display:flex;justify-content:center;" class="animate-float-subtle">
+        <div style="background:#fff;border-radius:1.25rem;box-shadow:0 20px 40px rgba(0,0,0,0.10),0 8px 16px rgba(236,72,153,0.07);border:1px solid #fce7f3;width:100%;max-width:340px;overflow:hidden;">
+          <div style="position:relative;height:220px;">
+            <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600&q=80&auto=format&fit=crop&crop=face&facepad=3"
+              alt="Face analysis preview" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;" />
+            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(30,27,75,0.55) 0%,transparent 55%);"></div>
+            <div style="position:absolute;top:0.75rem;right:0.75rem;background:rgba(34,197,94,0.90);color:#fff;font-family:'Raleway',sans-serif;font-size:0.6875rem;font-weight:700;padding:0.25rem 0.625rem;border-radius:9999px;display:flex;align-items:center;gap:0.25rem;">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Done
+            </div>
+            <div style="position:absolute;bottom:0.75rem;left:1rem;">
+              <p style="font-family:'Raleway',sans-serif;font-weight:700;font-size:0.875rem;color:#fff;margin:0;text-shadow:0 1px 4px rgba(0,0,0,0.4);">Analysis Complete</p>
+              <p style="font-family:'Raleway',sans-serif;font-size:0.75rem;color:rgba(255,255,255,0.65);margin:0;">Just now</p>
+            </div>
+          </div>
+          <div style="padding:1rem;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;margin-bottom:0.75rem;">
+              <div style="background:rgba(253,242,248,0.9);border-radius:0.625rem;padding:0.625rem 0.75rem;border:1px solid #fce7f3;display:flex;align-items:center;gap:0.5rem;">
+                <div style="width:1.125rem;height:1.125rem;border-radius:50%;background:#E59866;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,0.12);flex-shrink:0;"></div>
+                <div><p style="font-family:'Raleway',sans-serif;font-size:0.625rem;color:#94a3b8;margin:0;font-weight:600;text-transform:uppercase;letter-spacing:0.04em;">Skin Tone</p><p style="font-family:'Raleway',sans-serif;font-size:0.8125rem;font-weight:700;color:#1e293b;margin:0;">Medium</p></div>
+              </div>
+              <div style="background:rgba(245,243,255,0.9);border-radius:0.625rem;padding:0.625rem 0.75rem;border:1px solid #ede9fe;display:flex;align-items:center;gap:0.5rem;">
+                <div style="width:1.125rem;height:1.125rem;border-radius:50%;background:linear-gradient(135deg,#f59e0b,#d97706);border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,0.12);flex-shrink:0;"></div>
+                <div><p style="font-family:'Raleway',sans-serif;font-size:0.625rem;color:#94a3b8;margin:0;font-weight:600;text-transform:uppercase;letter-spacing:0.04em;">Undertone</p><p style="font-family:'Raleway',sans-serif;font-size:0.8125rem;font-weight:700;color:#1e293b;margin:0;">Warm</p></div>
+              </div>
+              <div style="background:rgba(240,249,255,0.9);border-radius:0.625rem;padding:0.625rem 0.75rem;border:1px solid #dbeafe;display:flex;align-items:center;gap:0.5rem;">
+                <div style="width:1.125rem;height:1.125rem;border-radius:50%;background:linear-gradient(135deg,#3b82f6,#2563eb);border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,0.12);flex-shrink:0;"></div>
+                <div><p style="font-family:'Raleway',sans-serif;font-size:0.625rem;color:#94a3b8;margin:0;font-weight:600;text-transform:uppercase;letter-spacing:0.04em;">Face Shape</p><p style="font-family:'Raleway',sans-serif;font-size:0.8125rem;font-weight:700;color:#1e293b;margin:0;">Oval</p></div>
+              </div>
+              <div style="background:rgba(240,253,244,0.9);border-radius:0.625rem;padding:0.625rem 0.75rem;border:1px solid #dcfce7;display:flex;align-items:center;gap:0.5rem;">
+                <div style="width:1.125rem;height:1.125rem;border-radius:50%;background:linear-gradient(135deg,#22c55e,#16a34a);border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,0.12);flex-shrink:0;"></div>
+                <div><p style="font-family:'Raleway',sans-serif;font-size:0.625rem;color:#94a3b8;margin:0;font-weight:600;text-transform:uppercase;letter-spacing:0.04em;">Skin Type</p><p style="font-family:'Raleway',sans-serif;font-size:0.8125rem;font-weight:700;color:#1e293b;margin:0;">Combo</p></div>
+              </div>
+            </div>
+            <div style="background:rgba(253,242,248,0.7);border-radius:0.625rem;padding:0.625rem 0.75rem;border:1px solid #fce7f3;">
+              <p style="font-family:'Raleway',sans-serif;font-size:0.625rem;font-weight:700;color:#EC4899;margin:0 0 0.5rem;text-transform:uppercase;letter-spacing:0.06em;">Top Picks</p>
+              <div style="display:flex;gap:0.375rem;flex-wrap:wrap;">
+                <span style="background:rgba(236,72,153,0.10);color:#EC4899;font-family:'Raleway',sans-serif;font-size:0.75rem;font-weight:600;padding:0.2rem 0.625rem;border-radius:9999px;border:1px solid rgba(236,72,153,0.20);">Coral Lip</span>
+                <span style="background:rgba(139,92,246,0.10);color:#8B5CF6;font-family:'Raleway',sans-serif;font-size:0.75rem;font-weight:600;padding:0.2rem 0.625rem;border-radius:9999px;border:1px solid rgba(139,92,246,0.20);">Warm Sand</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div id="toast-container" class="toast toast-top toast-end z-[9999] gap-2"></div>
+
+<script type="module">
+  import { initNavbar } from './components/navbar.js';
+  import { supabaseClient } from './js/supabase.js';
+
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  initNavbar();
+
+  // Check session once on load — update CTA button href silently
+  supabaseClient.auth.getSession().then(({ data: { session } }) => {
+    if (session) {
+      const btn = document.getElementById('cta-btn');
+      if (btn) btn.setAttribute('data-authed', '1');
+    }
+  });
+
+  window.handleCTA = function() {
+    const btn = document.getElementById('cta-btn');
+    if (btn && btn.getAttribute('data-authed') === '1') {
+      window.location.href = 'dashboard.html';
+    } else {
+      window.location.href = 'register.html';
+    }
+  };
+</script>
+</body>
+</html>

@@ -1,0 +1,192 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sign in to BeautyAI to access your personalized beauty analysis and recommendations." />
+  <title>Login — BeautyAI</title>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4/dist/full.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/custom.css" />
+  <script>/* Tailwind CDN - dev only */</script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body style="margin:0;padding:0;">
+
+  <div id="navbar-container"></div>
+
+  <div class="auth-layout">
+
+    <!-- Left decorative panel -->
+    <div class="auth-panel-left">
+      <div style="position:absolute;top:-80px;right:-80px;width:320px;height:320px;border-radius:50%;background:rgba(249,168,212,0.08);pointer-events:none;"></div>
+      <div style="position:absolute;bottom:-60px;left:-60px;width:240px;height:240px;border-radius:50%;background:rgba(139,92,246,0.08);pointer-events:none;"></div>
+
+      <a href="index.html" style="display:flex;align-items:center;gap:0.5rem;margin-bottom:2.5rem;text-decoration:none;" style="text-decoration:none;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="url(#lg-login)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <defs><linearGradient id="lg-login" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#F9A8D4"/><stop offset="100%" stop-color="#C084FC"/></linearGradient></defs>
+          <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/>
+        </svg>
+        <span style="font-family:'Lora',serif;font-weight:700;font-size:1.5rem;color:#fff;">BeautyAI</span>
+      </a>
+
+      <h1 style="font-family:'Lora',serif;font-weight:700;font-size:2.25rem;color:#fff;line-height:1.25;margin:0 0 0.875rem;">Welcome Back</h1>
+      <p style="font-family:'Raleway',sans-serif;color:rgba(255,255,255,0.68);font-size:1rem;margin:0 0 2.5rem;line-height:1.7;">Sign in to continue your beauty journey</p>
+
+      <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:1.125rem;">
+        <li style="display:flex;align-items:center;gap:0.875rem;">
+          <span style="flex-shrink:0;width:2rem;height:2rem;border-radius:50%;background:rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F9A8D4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          <span style="font-family:'Raleway',sans-serif;color:rgba(255,255,255,0.85);font-size:0.9375rem;font-weight:500;">Personalized beauty analysis</span>
+        </li>
+        <li style="display:flex;align-items:center;gap:0.875rem;">
+          <span style="flex-shrink:0;width:2rem;height:2rem;border-radius:50%;background:rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F9A8D4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          <span style="font-family:'Raleway',sans-serif;color:rgba(255,255,255,0.85);font-size:0.9375rem;font-weight:500;">Smart cosmetic recommendations</span>
+        </li>
+        <li style="display:flex;align-items:center;gap:0.875rem;">
+          <span style="flex-shrink:0;width:2rem;height:2rem;border-radius:50%;background:rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F9A8D4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          <span style="font-family:'Raleway',sans-serif;color:rgba(255,255,255,0.85);font-size:0.9375rem;font-weight:500;">Track your beauty history</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Right form panel -->
+    <div class="auth-panel-right">
+      <div class="auth-card">
+
+        <a href="index.html" style="display:flex;align-items:center;gap:0.5rem;justify-content:center;margin-bottom:1.75rem;text-decoration:none;" style="text-decoration:none;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="url(#rg-login)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <defs><linearGradient id="rg-login" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#EC4899"/><stop offset="100%" stop-color="#8B5CF6"/></linearGradient></defs>
+            <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/>
+          </svg>
+          <span style="font-family:'Lora',serif;font-weight:700;font-size:1.375rem;" class="gradient-text">BeautyAI</span>
+        </a>
+
+        <div style="text-align:center;margin-bottom:2rem;">
+          <h2 style="font-family:'Lora',serif;font-weight:700;font-size:1.625rem;color:#1e1b4b;margin:0 0 0.375rem;">Sign in to your account</h2>
+          <p style="font-family:'Raleway',sans-serif;color:#64748b;font-size:0.9rem;margin:0;">Welcome back — we missed you</p>
+        </div>
+
+        <form id="login-form" novalidate>
+
+          <div style="margin-bottom:1.125rem;">
+            <label class="label-beauty" for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="your@email.com"
+              class="input-beauty" autocomplete="email" required />
+          </div>
+
+          <div style="margin-bottom:0.75rem;">
+            <label class="label-beauty" for="password">Password</label>
+            <div style="position:relative;">
+              <input type="password" id="password" name="password" placeholder="Your password"
+                class="input-beauty" style="padding-right:3rem;" autocomplete="current-password" required />
+              <button type="button" id="toggle-password" aria-label="Toggle password visibility"
+                style="position:absolute;right:0.875rem;top:50%;transform:translateY(-50%);background:none;border:none;padding:0;color:#94a3b8;cursor:pointer;transition:color 200ms;display:flex;align-items:center;"
+                onmouseenter="this.style.color='#64748b'" onmouseleave="this.style.color='#94a3b8'">
+                <svg id="eye-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                  <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.625rem;">
+            <label style="display:flex;align-items:center;gap:0.5rem;cursor:pointer;user-select:none;">
+              <input type="checkbox" id="remember-me" style="width:1rem;height:1rem;border-radius:3px;accent-color:#EC4899;cursor:pointer;" />
+              <span style="font-family:'Raleway',sans-serif;font-size:0.875rem;color:#475569;">Remember me</span>
+            </label>
+            <a href="forgot-password.html"
+              style="font-family:'Raleway',sans-serif;font-size:0.875rem;color:#EC4899;font-weight:600;text-decoration:none;cursor:pointer;"
+              onmouseenter="this.style.textDecoration='underline'" onmouseleave="this.style.textDecoration='none'">Forgot password?</a>
+          </div>
+
+          <button type="submit" id="login-btn"
+            style="width:100%;padding:0.875rem;border-radius:0.75rem;background:linear-gradient(135deg,#EC4899,#c026d3,#8B5CF6);color:#fff;border:none;font-family:'Raleway',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;transition:opacity 200ms,box-shadow 200ms;box-shadow:0 4px 14px rgba(236,72,153,0.28);min-height:3rem;display:flex;align-items:center;justify-content:center;gap:0.5rem;"
+            onmouseenter="this.style.opacity='0.88';this.style.boxShadow='0 6px 20px rgba(236,72,153,0.40)'"
+            onmouseleave="this.style.opacity='1';this.style.boxShadow='0 4px 14px rgba(236,72,153,0.28)'">
+            Sign In
+          </button>
+        </form>
+
+        <p style="text-align:center;font-family:'Raleway',sans-serif;font-size:0.875rem;color:#64748b;margin-top:1.5rem;">
+          Don't have an account?
+          <a href="register.html"
+            style="color:#EC4899;font-weight:700;text-decoration:none;margin-left:0.25rem;cursor:pointer;"
+            onmouseenter="this.style.textDecoration='underline'" onmouseleave="this.style.textDecoration='none'">Create one free</a>
+        </p>
+
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-container" class="toast toast-top toast-end z-[9999] gap-2"></div>
+
+  <script type="module">
+    import { initNavbar } from './components/navbar.js';
+    import { login, redirectIfAuthenticated } from './js/auth.js';
+    import { toast } from './js/toast.js';
+    import { validateEmail, validatePassword } from './js/validation.js';
+
+    initNavbar();
+    await redirectIfAuthenticated('dashboard.html');
+
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    window.__toast = toast;
+
+    const toggleBtn = document.getElementById('toggle-password');
+    const passwordInput = document.getElementById('password');
+    toggleBtn?.addEventListener('click', () => {
+      const isPassword = passwordInput.type === 'password';
+      passwordInput.type = isPassword ? 'text' : 'password';
+      passwordInput.style.letterSpacing = isPassword ? 'normal' : '0.2em';
+      passwordInput.style.fontFamily = isPassword ? "'Raleway', sans-serif" : 'Verdana, sans-serif';
+      const eyeIcon = toggleBtn.querySelector('svg');
+      if (eyeIcon) {
+        eyeIcon.innerHTML = isPassword
+          ? `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"/>`
+          : `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>`;
+      }
+    });
+
+    const form = document.getElementById('login-form');
+    const loginBtn = document.getElementById('login-btn');
+
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+
+      const emailCheck = validateEmail(email);
+      if (!emailCheck.valid) { toast.error(emailCheck.message); return; }
+      const passCheck = validatePassword(password);
+      if (!passCheck.valid) { toast.error(passCheck.message); return; }
+
+      loginBtn.disabled = true;
+      const originalHTML = loginBtn.innerHTML;
+      loginBtn.innerHTML = '<span class="loading loading-spinner loading-sm"></span>';
+      loginBtn.style.opacity = '0.75';
+
+      try {
+        await login(email, password);
+        toast.success('Login successful! Redirecting…');
+        setTimeout(() => { window.location.href = 'dashboard.html'; }, 800);
+      } catch (err) {
+        const msg = err.message?.includes('Invalid login') || err.message?.includes('credentials')
+          ? 'Invalid email or password.'
+          : err.message || 'Login failed. Please try again.';
+        toast.error(msg);
+        loginBtn.disabled = false;
+        loginBtn.innerHTML = originalHTML;
+        loginBtn.style.opacity = '1';
+      }
+    });
+  </script>
+</body>
+</html>

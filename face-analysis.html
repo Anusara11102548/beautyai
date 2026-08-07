@@ -1,0 +1,433 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AI Face Analysis — upload your photo to get personalized beauty recommendations." />
+  <title>Face Analysis — BeautyAI</title>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4/dist/full.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/custom.css" />
+  <script>/* Tailwind CDN - dev only */</script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="min-h-screen" style="background-color:#FDF2F8;">
+
+<div id="navbar-container"></div>
+
+<main class="page-container" style="padding-top:2.5rem; padding-bottom:4rem; max-width:900px;">
+
+  <!-- Page header -->
+  <div style="margin-bottom:2rem;">
+    <div class="beauty-badge" style="margin-bottom:0.75rem;">Smart Analysis</div>
+    <h1 style="font-family:'Lora',serif;font-size:clamp(1.75rem,4vw,2.25rem);font-weight:700;color:#1e1b4b;margin:0 0 0.5rem;">
+      Face Analysis
+    </h1>
+    <p style="font-family:'Raleway',sans-serif;font-size:0.9375rem;color:#64748b;margin:0;">
+      Upload a clear, well-lit frontal photo to get your personalized beauty recommendations.
+    </p>
+  </div>
+
+  <!-- Upload section -->
+  <div class="card-beauty" style="margin-bottom:1.5rem;">
+    <h2 style="font-family:'Lora',serif;font-size:1.125rem;font-weight:600;color:#1e1b4b;margin:0 0 1.25rem;">Upload Your Photo</h2>
+
+    <!-- Upload guidelines -->
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:0.625rem;margin-bottom:1.25rem;" class="sm:grid-cols-4">
+      <div style="background:rgba(236,72,153,0.06);border-radius:0.625rem;padding:0.75rem;text-align:center;border:1px solid rgba(236,72,153,0.12);">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#EC4899" stroke-width="2" style="margin:0 auto 0.375rem;display:block;"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+        <p style="font-family:'Raleway',sans-serif;font-size:0.75rem;font-weight:600;color:#EC4899;margin:0;">Front facing</p>
+      </div>
+      <div style="background:rgba(139,92,246,0.06);border-radius:0.625rem;padding:0.75rem;text-align:center;border:1px solid rgba(139,92,246,0.12);">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#8B5CF6" stroke-width="2" style="margin:0 auto 0.375rem;display:block;"><circle cx="12" cy="12" r="5"/><path stroke-linecap="round" d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        <p style="font-family:'Raleway',sans-serif;font-size:0.75rem;font-weight:600;color:#8B5CF6;margin:0;">Good lighting</p>
+      </div>
+      <div style="background:rgba(34,197,94,0.06);border-radius:0.625rem;padding:0.75rem;text-align:center;border:1px solid rgba(34,197,94,0.12);">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#22c55e" stroke-width="2" style="margin:0 auto 0.375rem;display:block;"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+        <p style="font-family:'Raleway',sans-serif;font-size:0.75rem;font-weight:600;color:#22c55e;margin:0;">Clear &amp; sharp</p>
+      </div>
+      <div style="background:rgba(59,130,246,0.06);border-radius:0.625rem;padding:0.75rem;text-align:center;border:1px solid rgba(59,130,246,0.12);">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#3b82f6" stroke-width="2" style="margin:0 auto 0.375rem;display:block;"><path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+        <p style="font-family:'Raleway',sans-serif;font-size:0.75rem;font-weight:600;color:#3b82f6;margin:0;">1 person only</p>
+      </div>
+    </div>
+
+    <!-- Drop zone -->
+    <div
+      id="drop-zone"
+      class="upload-zone"
+      role="button"
+      tabindex="0"
+      aria-label="Upload face photo"
+      style="padding:3rem 1.5rem;text-align:center;"
+    >
+      <input type="file" id="file-input" accept=".jpg,.jpeg,.png,.webp" class="hidden" aria-label="Select image file" />
+      <div id="drop-zone-content">
+        <div style="width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,rgba(236,72,153,0.1),rgba(139,92,246,0.1));margin:0 auto 1rem;display:flex;align-items:center;justify-content:center;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="#EC4899" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"/></svg>
+        </div>
+        <p style="font-family:'Raleway',sans-serif;font-weight:600;font-size:0.9375rem;color:#1e293b;margin:0 0 0.375rem;">Drop your photo here or click to browse</p>
+        <p style="font-family:'Raleway',sans-serif;font-size:0.8125rem;color:#94a3b8;margin:0;">JPG, JPEG, PNG, WEBP &middot; Max 10MB</p>
+      </div>
+    </div>
+
+    <!-- Image preview (hidden until file selected) -->
+    <div id="preview-container" class="hidden" style="margin-top:1rem;text-align:center;position:relative;">
+      <img id="preview-img" src="" alt="Preview" style="max-height:320px;border-radius:0.875rem;object-fit:contain;box-shadow:0 4px 16px rgba(0,0,0,0.1);display:inline-block;" />
+      <button id="remove-img-btn" style="position:absolute;top:8px;right:8px;width:32px;height:32px;border-radius:50%;background:#ef4444;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(239,68,68,0.4);" aria-label="Remove photo">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <!-- Progress bar -->
+    <div id="upload-progress-wrap" class="hidden" style="margin-top:1rem;">
+      <div style="display:flex;justify-content:space-between;margin-bottom:0.375rem;">
+        <span style="font-family:'Raleway',sans-serif;font-size:0.8125rem;color:#64748b;">Uploading…</span>
+        <span id="upload-pct" style="font-family:'Raleway',sans-serif;font-size:0.8125rem;color:#EC4899;font-weight:600;">0%</span>
+      </div>
+      <div class="progress-beauty"><div id="upload-progress-bar" class="progress-beauty-bar" style="width:0%;"></div></div>
+    </div>
+
+    <!-- Analyze button -->
+    <div style="margin-top:1.25rem;">
+      <button
+        id="analyze-btn"
+        disabled
+        style="width:100%;padding:0.875rem;border-radius:0.75rem;background:linear-gradient(135deg,#EC4899,#c026d3,#8B5CF6);color:white;font-family:'Raleway',sans-serif;font-weight:700;font-size:1rem;border:none;cursor:not-allowed;opacity:0.45;transition:all 200ms;display:flex;align-items:center;justify-content:center;gap:0.625rem;"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+        Analyze My Face
+      </button>
+
+      <!-- Disclaimer -->
+      <div style="margin-top:0.875rem;padding:0.75rem 1rem;background:rgba(248,250,252,0.8);border-radius:0.625rem;border:1px solid #e2e8f0;display:flex;align-items:flex-start;gap:0.625rem;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:0.1rem;" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <p style="font-family:'Raleway',sans-serif;font-size:0.75rem;color:#94a3b8;margin:0;line-height:1.6;">
+          คำแนะนำที่ได้รับเป็นแนวทางเบื้องต้นเท่านั้น ระบบต้องการรูปใบหน้าคนที่ชัดเจนเพื่อผลลัพธ์ที่แม่นยำที่สุด หากอัปโหลดรูปที่ไม่ใช่ใบหน้า คำแนะนำที่ได้อาจไม่ตรงกับลักษณะผิวของคุณ
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Analysis progress panel (shown during analysis) -->
+  <div id="analysis-panel" class="hidden card-beauty" style="margin-bottom:1.5rem;">
+    <h2 style="font-family:'Lora',serif;font-size:1.125rem;font-weight:600;color:#1e1b4b;margin:0 0 1.25rem;">Analyzing…</h2>
+    <div id="steps-list" style="display:flex;flex-direction:column;gap:0.5rem;"></div>
+  </div>
+
+  <!-- Results panel (shown after analysis) -->
+  <div id="results-panel" class="hidden">
+
+    <!-- Analysis result summary -->
+    <div class="card-beauty result-card" style="margin-bottom:1.5rem;">
+      <div style="display:flex;align-items:center;justify-content:between;flex-wrap:wrap;gap:0.75rem;margin-bottom:1.25rem;">
+        <h2 style="font-family:'Lora',serif;font-size:1.25rem;font-weight:700;color:#1e1b4b;margin:0;flex:1;">Your Analysis Results</h2>
+        <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+          <span id="result-style-badge" style="background:linear-gradient(135deg,rgba(236,72,153,0.1),rgba(139,92,246,0.1));color:#8B5CF6;font-family:'Raleway',sans-serif;font-size:0.75rem;font-weight:700;padding:0.25rem 0.75rem;border-radius:9999px;border:1px solid rgba(139,92,246,0.2);"></span>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:0.75rem;" class="sm:grid-cols-4">
+        <!-- Skin Tone -->
+        <div style="background:rgba(253,242,248,0.8);border-radius:0.75rem;padding:1rem;text-align:center;border:1px solid rgba(236,72,153,0.12);">
+          <p style="font-family:'Raleway',sans-serif;font-size:0.6875rem;color:#94a3b8;margin:0 0 0.5rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;">Skin Tone</p>
+          <div id="skin-tone-swatch" style="width:36px;height:36px;border-radius:50%;margin:0 auto 0.5rem;border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,0.15);"></div>
+          <p id="result-skin-tone" style="font-family:'Raleway',sans-serif;font-size:0.875rem;font-weight:700;color:#1e293b;margin:0;text-transform:capitalize;"></p>
+        </div>
+        <!-- Undertone -->
+        <div style="background:rgba(245,243,255,0.8);border-radius:0.75rem;padding:1rem;text-align:center;border:1px solid rgba(139,92,246,0.12);">
+          <p style="font-family:'Raleway',sans-serif;font-size:0.6875rem;color:#94a3b8;margin:0 0 0.5rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;">Undertone</p>
+          <div id="undertone-icon" style="margin:0 auto 0.5rem;display:flex;align-items:center;justify-content:center;height:36px;"></div>
+          <p id="result-undertone" style="font-family:'Raleway',sans-serif;font-size:0.875rem;font-weight:700;color:#1e293b;margin:0;text-transform:capitalize;"></p>
+        </div>
+        <!-- Face Shape -->
+        <div style="background:rgba(240,249,255,0.8);border-radius:0.75rem;padding:1rem;text-align:center;border:1px solid rgba(59,130,246,0.12);">
+          <p style="font-family:'Raleway',sans-serif;font-size:0.6875rem;color:#94a3b8;margin:0 0 0.5rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;">Face Shape</p>
+          <div style="height:36px;display:flex;align-items:center;justify-content:center;margin-bottom:0.5rem;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="#3b82f6" stroke-width="1.5"><ellipse cx="12" cy="12" rx="7" ry="9"/></svg>
+          </div>
+          <p id="result-face-shape" style="font-family:'Raleway',sans-serif;font-size:0.875rem;font-weight:700;color:#1e293b;margin:0;text-transform:capitalize;"></p>
+        </div>
+        <!-- Skin Type -->
+        <div style="background:rgba(240,253,244,0.8);border-radius:0.75rem;padding:1rem;text-align:center;border:1px solid rgba(34,197,94,0.12);">
+          <p style="font-family:'Raleway',sans-serif;font-size:0.6875rem;color:#94a3b8;margin:0 0 0.5rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;">Skin Type</p>
+          <div style="height:36px;display:flex;align-items:center;justify-content:center;margin-bottom:0.5rem;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="#22c55e" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+          </div>
+          <p id="result-skin-type" style="font-family:'Raleway',sans-serif;font-size:0.875rem;font-weight:700;color:#1e293b;margin:0;text-transform:capitalize;"></p>
+        </div>
+      </div>
+
+      <!-- Analysis notes -->
+      <div id="analysis-notes-wrap" class="hidden" style="margin-top:1rem;background:rgba(248,250,252,0.8);border-radius:0.625rem;padding:0.875rem;border:1px solid #e2e8f0;">
+        <p style="font-family:'Raleway',sans-serif;font-size:0.8125rem;color:#64748b;margin:0;font-style:italic;" id="analysis-notes-text"></p>
+      </div>
+
+      <!-- Result disclaimer -->
+      <div style="margin-top:1rem;padding:0.75rem 1rem;background:rgba(245,158,11,0.05);border-radius:0.625rem;border:1px solid rgba(245,158,11,0.20);display:flex;align-items:flex-start;gap:0.625rem;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:0.1rem;" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <p style="font-family:'Raleway',sans-serif;font-size:0.75rem;color:#92400e;margin:0;line-height:1.6;">
+          ผลลัพธ์นี้เป็นคำแนะนำเบื้องต้น ไม่ใช่การวินิจฉัยความงามอย่างเป็นทางการ ขอแนะนำให้ทดลองผลิตภัณฑ์ก่อนตัดสินใจซื้อเสมอ
+        </p>
+      </div>
+    </div>
+
+    <!-- Recommendations section -->
+    <div id="recommendations-wrap"></div>
+
+    <!-- Action buttons -->
+    <div style="display:flex;flex-wrap:wrap;gap:0.75rem;margin-top:1.5rem;">
+      <a id="view-full-rec-btn" href="#" style="flex:1;min-width:180px;padding:0.75rem 1rem;border-radius:0.75rem;background:linear-gradient(135deg,#EC4899,#c026d3,#8B5CF6);color:white;font-family:'Raleway',sans-serif;font-weight:700;font-size:0.9375rem;text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;gap:0.5rem;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+        View Full Recommendations
+      </a>
+      <button id="new-analysis-btn" style="flex:1;min-width:160px;padding:0.75rem 1rem;border-radius:0.75rem;background:white;color:#EC4899;font-family:'Raleway',sans-serif;font-weight:600;font-size:0.9375rem;border:2px solid #EC4899;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:0.5rem;transition:all 200ms;" onmouseover="this.style.background='rgba(236,72,153,0.06)'" onmouseout="this.style.background='white'">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+        New Analysis
+      </button>
+    </div>
+  </div>
+
+</main>
+
+<div id="toast-container" class="toast toast-top toast-end z-[9999] gap-2"></div>
+
+<script type="module">
+  import { initNavbar } from './components/navbar.js';
+  import { requireAuth } from './js/auth.js';
+  import { runFaceAnalysis, ANALYSIS_STEPS } from './js/face-analysis.js';
+  import { toast } from './js/toast.js';
+
+  // Theme
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  window.__toast = toast;
+
+  // Auth guard
+  const session = await requireAuth('login.html');
+  if (!session) throw new Error('Not authenticated');
+
+  await initNavbar();
+
+  const SKIN_TONE_COLORS = {
+    fair: '#FDEBD0', light: '#F5CBA7', medium: '#E59866', tan: '#CA6F1E', deep: '#784212'
+  };
+  const UNDERTONE_COLORS = { warm: '#f59e0b', cool: '#3b82f6', neutral: '#8b5cf6' };
+
+  let selectedFile = null;
+
+  // ── Upload zone setup ────────────────────────────────────────
+  const dropZone     = document.getElementById('drop-zone');
+  const fileInput    = document.getElementById('file-input');
+  const previewCont  = document.getElementById('preview-container');
+  const previewImg   = document.getElementById('preview-img');
+  const analyzeBtn   = document.getElementById('analyze-btn');
+  const removeBtn    = document.getElementById('remove-img-btn');
+
+  dropZone.addEventListener('click', () => fileInput.click());
+  dropZone.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') fileInput.click(); });
+
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+  dropZone.addEventListener('drop', e => {
+    e.preventDefault();
+    dropZone.classList.remove('drag-over');
+    const file = e.dataTransfer.files?.[0];
+    if (file) handleFile(file);
+  });
+
+  fileInput.addEventListener('change', e => {
+    const file = e.target.files?.[0];
+    if (file) handleFile(file);
+  });
+
+  removeBtn.addEventListener('click', resetUpload);
+
+  document.getElementById('new-analysis-btn')?.addEventListener('click', resetUpload);
+
+  function handleFile(file) {
+    // Validate type
+    const allowed = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+    if (!allowed.includes(file.type)) {
+      toast.error('Unsupported file type. Use JPG, PNG, or WEBP.');
+      return;
+    }
+    if (file.size > 10 * 1024 * 1024) {
+      toast.error('File too large. Maximum size is 10MB.');
+      return;
+    }
+    selectedFile = file;
+    const reader = new FileReader();
+    reader.onload = e => {
+      previewImg.src = e.target.result;
+      previewCont.classList.remove('hidden');
+      dropZone.classList.add('hidden');
+    };
+    reader.readAsDataURL(file);
+    // Enable analyze button
+    analyzeBtn.disabled = false;
+    analyzeBtn.style.opacity = '1';
+    analyzeBtn.style.cursor = 'pointer';
+  }
+
+  function resetUpload() {
+    selectedFile = null;
+    fileInput.value = '';
+    previewImg.src = '';
+    previewCont.classList.add('hidden');
+    dropZone.classList.remove('hidden');
+    analyzeBtn.disabled = true;
+    analyzeBtn.style.opacity = '0.45';
+    analyzeBtn.style.cursor = 'not-allowed';
+    document.getElementById('analysis-panel').classList.add('hidden');
+    document.getElementById('results-panel').classList.add('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ── Build steps UI ───────────────────────────────────────────
+  function buildSteps() {
+    const list = document.getElementById('steps-list');
+    list.innerHTML = '';
+    ANALYSIS_STEPS.forEach(s => {
+      const el = document.createElement('div');
+      el.id = `step-${s.id}`;
+      el.className = 'analysis-step';
+      el.setAttribute('data-status', 'pending');
+      el.innerHTML = `
+        <div class="step-icon" style="width:28px;height:28px;border-radius:50%;background:#f1f5f9;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 300ms;">
+          <span style="font-size:14px;">${s.icon}</span>
+        </div>
+        <span style="font-family:'Raleway',sans-serif;font-size:0.875rem;font-weight:500;color:#475569;flex:1;">${s.label}</span>
+        <span class="step-status-icon" style="width:20px;text-align:center;flex-shrink:0;"></span>
+      `;
+      list.appendChild(el);
+    });
+  }
+
+  function updateStep(id, status) {
+    const el = document.getElementById(`step-${id}`);
+    if (!el) return;
+    el.setAttribute('data-status', status);
+    const icon = el.querySelector('.step-status-icon');
+    const bg   = el.querySelector('.step-icon');
+    if (status === 'active') {
+      icon.innerHTML = '<div class="step-spinner"></div>';
+      bg.style.background = 'rgba(236,72,153,0.12)';
+    } else if (status === 'done') {
+      icon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="#22c55e" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>';
+      bg.style.background = 'rgba(34,197,94,0.1)';
+    } else if (status === 'error') {
+      icon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="#ef4444" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>';
+      bg.style.background = 'rgba(239,68,68,0.1)';
+    }
+  }
+
+  // ── Analyze ──────────────────────────────────────────────────
+  analyzeBtn.addEventListener('click', async () => {
+    if (!selectedFile) return;
+
+    analyzeBtn.disabled = true;
+    analyzeBtn.style.opacity = '0.7';
+    const origHTML = analyzeBtn.innerHTML;
+    analyzeBtn.innerHTML = '<span class="loading loading-spinner loading-sm"></span><span>Analyzing…</span>';
+
+    buildSteps();
+    document.getElementById('analysis-panel').classList.remove('hidden');
+    document.getElementById('results-panel').classList.add('hidden');
+    document.getElementById('analysis-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    try {
+      const result = await runFaceAnalysis(selectedFile, session.user.id, updateStep);
+      showResults(result);
+    } catch (err) {
+      toast.error(err.message || 'Analysis failed. Please try again.');
+      analyzeBtn.disabled = false;
+      analyzeBtn.style.opacity = '1';
+      analyzeBtn.innerHTML = origHTML;
+    }
+  });
+
+  // ── Render results ───────────────────────────────────────────
+  function showResults({ analysisId, analysisResult, recommendation }) {
+    document.getElementById('analysis-panel').classList.add('hidden');
+    document.getElementById('results-panel').classList.remove('hidden');
+    document.getElementById('results-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    // Badge
+    const style = analysisResult.beautyStyle || recommendation.beautyStyles?.[0] || '';
+    document.getElementById('result-style-badge').textContent = style;
+
+    // Skin tone swatch
+    const swatchColor = SKIN_TONE_COLORS[analysisResult.skinTone] || '#E59866';
+    document.getElementById('skin-tone-swatch').style.background = swatchColor;
+    document.getElementById('result-skin-tone').textContent = analysisResult.skinTone || '—';
+
+    // Undertone icon
+    const utColor = UNDERTONE_COLORS[analysisResult.undertone] || '#8b5cf6';
+    document.getElementById('undertone-icon').innerHTML = `<div style="width:28px;height:28px;border-radius:50%;background:${utColor};opacity:0.85;"></div>`;
+    document.getElementById('result-undertone').textContent = analysisResult.undertone || '—';
+
+    document.getElementById('result-face-shape').textContent = analysisResult.faceShape || '—';
+    document.getElementById('result-skin-type').textContent  = analysisResult.skinType  || '—';
+
+    if (analysisResult.analysisNotes) {
+      document.getElementById('analysis-notes-text').textContent = analysisResult.analysisNotes;
+      document.getElementById('analysis-notes-wrap').classList.remove('hidden');
+    }
+
+    // Link to full recommendations
+    document.getElementById('view-full-rec-btn').href = `cosmetic-recommendation.html?id=${analysisId}`;
+
+    // Quick recs preview
+    renderQuickRecs(recommendation);
+  }
+
+  function renderQuickRecs(rec) {
+    const wrap = document.getElementById('recommendations-wrap');
+    const lips = rec.lipstick?.colors?.slice(0, 3) || [];
+    const eyeColors = rec.eyeshadow?.colors?.slice(0, 5) || [];
+    const styles = rec.beautyStyles?.slice(0, 3) || [];
+
+    wrap.innerHTML = `
+      <div class="card-beauty result-card" style="margin-bottom:1rem;">
+        <h3 style="font-family:'Lora',serif;font-size:1rem;font-weight:600;color:#1e1b4b;margin:0 0 1.25rem;">Quick Recommendations</h3>
+        <div style="display:grid;grid-template-columns:1fr;gap:1rem;" class="sm:grid-cols-2">
+
+          <!-- Foundation -->
+          <div style="background:rgba(253,242,248,0.6);border-radius:0.75rem;padding:1rem;border:1px solid rgba(236,72,153,0.1);">
+            <p style="font-family:'Raleway',sans-serif;font-size:0.75rem;font-weight:700;color:#EC4899;margin:0 0 0.375rem;text-transform:uppercase;letter-spacing:0.06em;">Foundation</p>
+            <p style="font-family:'Raleway',sans-serif;font-size:0.875rem;font-weight:600;color:#1e293b;margin:0 0 0.25rem;">${rec.foundation?.shade || '—'}</p>
+            <p style="font-family:'Raleway',sans-serif;font-size:0.8125rem;color:#64748b;margin:0;">${rec.foundation?.finish || ''} finish</p>
+          </div>
+
+          <!-- Lipstick -->
+          <div style="background:rgba(245,243,255,0.6);border-radius:0.75rem;padding:1rem;border:1px solid rgba(139,92,246,0.1);">
+            <p style="font-family:'Raleway',sans-serif;font-size:0.75rem;font-weight:700;color:#8B5CF6;margin:0 0 0.5rem;text-transform:uppercase;letter-spacing:0.06em;">Lipstick</p>
+            <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+              ${lips.map(c => `<div style="display:flex;align-items:center;gap:0.375rem;"><div style="width:18px;height:18px;border-radius:50%;background:${c.hex};border:2px solid white;box-shadow:0 1px 4px rgba(0,0,0,0.15);"></div><span style="font-family:'Raleway',sans-serif;font-size:0.8125rem;color:#475569;">${c.name}</span></div>`).join('')}
+            </div>
+          </div>
+
+          <!-- Eyeshadow -->
+          <div style="background:rgba(240,249,255,0.6);border-radius:0.75rem;padding:1rem;border:1px solid rgba(59,130,246,0.1);">
+            <p style="font-family:'Raleway',sans-serif;font-size:0.75rem;font-weight:700;color:#3b82f6;margin:0 0 0.5rem;text-transform:uppercase;letter-spacing:0.06em;">Eyeshadow</p>
+            <div style="display:flex;gap:0.375rem;flex-wrap:wrap;">
+              ${eyeColors.map(c => `<div title="${c.name}" style="width:24px;height:24px;border-radius:6px;background:${c.hex};border:2px solid white;box-shadow:0 1px 4px rgba(0,0,0,0.15);cursor:default;"></div>`).join('')}
+            </div>
+            <p style="font-family:'Raleway',sans-serif;font-size:0.8125rem;color:#64748b;margin:0.5rem 0 0;">${rec.eyeshadow?.palettes?.[0] || ''}</p>
+          </div>
+
+          <!-- Beauty Styles -->
+          <div style="background:rgba(240,253,244,0.6);border-radius:0.75rem;padding:1rem;border:1px solid rgba(34,197,94,0.1);">
+            <p style="font-family:'Raleway',sans-serif;font-size:0.75rem;font-weight:700;color:#22c55e;margin:0 0 0.5rem;text-transform:uppercase;letter-spacing:0.06em;">Your Beauty Styles</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.375rem;">
+              ${styles.map(s => `<span style="background:rgba(34,197,94,0.1);color:#16a34a;font-family:'Raleway',sans-serif;font-size:0.75rem;font-weight:600;padding:0.2rem 0.625rem;border-radius:9999px;border:1px solid rgba(34,197,94,0.2);">${s}</span>`).join('')}
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+</script>
+</body>
+</html>

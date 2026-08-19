@@ -1,305 +1,144 @@
-BeautyAI
+## วิธีรัน
 
-BeautyAI คือเว็บแอปพลิเคชัน Personal Beauty Advisor ที่ช่วยวิเคราะห์ลักษณะใบหน้าและแนะนำผลิตภัณฑ์เครื่องสำอางให้เหมาะกับผู้ใช้ โดยผู้ใช้สามารถอัปโหลดรูปภาพเพื่อรับผลการวิเคราะห์ เช่น สีผิว (Skin Tone), โทนผิว (Undertone), รูปหน้า (Face Shape) และสภาพผิว (Skin Type) พร้อมดูคำแนะนำผลิตภัณฑ์และประวัติการวิเคราะห์ย้อนหลัง
+โปรเจกต์นี้เป็นเว็บแอปพลิเคชันที่พัฒนาด้วย HTML, CSS และ JavaScript โดยใช้ Supabase สำหรับ Authentication และ Database
 
-Features
+สามารถรันโปรเจกต์ผ่าน Local Web Server ได้ เช่น **Live Server ใน VS Code** หรือ Python
 
-สมัครสมาชิกและเข้าสู่ระบบ
+```bash
+python -m http.server 8000
+```
 
-จัดการข้อมูลโปรไฟล์ผู้ใช้
+จากนั้นเปิดเว็บไซต์ที่
 
-อัปโหลดรูปภาพสำหรับการวิเคราะห์ใบหน้า
+```text
+http://localhost:8000
+```
 
-วิเคราะห์ข้อมูลจากภาพด้วย Local Image Analysis
+ก่อนใช้งานระบบต้องตั้งค่า Supabase ในไฟล์
 
-วิเคราะห์ Skin Tone และ Undertone
+```text
+js/supabase.js
+```
 
-ประเมิน Face Shape และ Skin Type
+และนำ SQL ใน
 
-ตรวจสอบคุณภาพและแสงของภาพ
-
-แนะนำผลิตภัณฑ์เครื่องสำอาง เช่น
-
-Foundation
-
-Cushion
-
-Lipstick
-
-Blush
-
-Eyeshadow
-
-Eyebrow
-
-Sunscreen
-
-Skincare
-
-บันทึกและดูประวัติการวิเคราะห์
-
-จัดเก็บข้อมูลผู้ใช้และผลการวิเคราะห์ด้วย Supabase
-
-มีระบบ Row Level Security (RLS) เพื่อจำกัดการเข้าถึงข้อมูลของผู้ใช้
-
-Technologies
-
-HTML5 — โครงสร้างหน้าเว็บไซต์
-
-CSS3 — การออกแบบและ Responsive UI
-
-JavaScript (ES Modules) — Logic และการทำงานของระบบ
-
-Supabase — Authentication และ Database
-
-Canvas API — ประมวลผลข้อมูล Pixel จากรูปภาพ
-
-Web Crypto API — สร้าง SHA-256 hash สำหรับรูปภาพ
-
-Google Fonts — Lora และ Raleway
-
-Project Structure
-
-beautyai-main/
-├── assets/
-│   └── css/
-│       └── custom.css
-├── components/
-│   ├── navbar.js
-│   └── sidebar.js
-├── design-system/
-│   └── beautyai/
-│       └── MASTER.md
-├── js/
-│   ├── ai-service.js
-│   ├── auth.js
-│   ├── face-analysis.js
-│   ├── history.js
-│   ├── profile.js
-│   ├── recommendation.js
-│   ├── supabase.js
-│   ├── toast.js
-│   ├── upload.js
-│   └── validation.js
-├── supabase/
-│   ├── schema.sql
-│   └── storage-policies.sql
-├── index.html
-├── login.html
-├── register.html
-├── forgot-password.html
-├── dashboard.html
-├── face-analysis.html
-├── cosmetic-recommendation.html
-├── history.html
-└── profile.html
-
-Main Pages
-
-Page
-
-Description
-
-index.html
-
-หน้าแรกและแนะนำ BeautyAI
-
-login.html
-
-เข้าสู่ระบบ
-
-register.html
-
-สมัครสมาชิก
-
-forgot-password.html
-
-ขอเปลี่ยนรหัสผ่าน
-
-dashboard.html
-
-หน้าหลักหลังเข้าสู่ระบบ
-
-face-analysis.html
-
-อัปโหลดรูปและวิเคราะห์ใบหน้า
-
-cosmetic-recommendation.html
-
-แสดงคำแนะนำเครื่องสำอาง
-
-history.html
-
-ดูประวัติการวิเคราะห์
-
-profile.html
-
-จัดการโปรไฟล์
-
-How the Analysis Works
-
-BeautyAI ใช้การวิเคราะห์ภาพภายใน Browser โดยไม่จำเป็นต้องเรียกใช้ AI API ภายนอก
-
-รับรูปภาพจากผู้ใช้
-
-สร้าง SHA-256 hash ของไฟล์เพื่อใช้เป็นตัวระบุรูปภาพ
-
-ปรับขนาดรูปภาพให้เหมาะสมก่อนประมวลผล
-
-ใช้ Canvas API อ่านข้อมูล Pixel บริเวณส่วนกลางของภาพ
-
-คำนวณค่า RGB, Brightness และ Variance
-
-นำค่าที่ได้ไปประเมิน Skin Tone, Undertone และ Skin Type
-
-ใช้ค่า Hash เพื่อสร้างผล Face Shape แบบ deterministic
-
-ตรวจสอบคุณภาพและสภาพแสงของภาพ
-
-นำผลการวิเคราะห์ไปใช้สร้างคำแนะนำเครื่องสำอาง
-
-บันทึกผลลัพธ์และประวัติลงใน Supabase
-
-หมายเหตุ: ระบบวิเคราะห์ในโปรเจกต์นี้เป็น Local Image Analysis ที่อาศัยการประมวลผล Pixel และกฎที่กำหนดไว้ใน JavaScript ไม่ใช่โมเดล Computer Vision/AI ที่ตรวจจับใบหน้าแบบเต็มรูปแบบ ดังนั้นผลลัพธ์เป็นการประเมินเบื้องต้นและไม่ควรใช้แทนคำแนะนำจากผู้เชี่ยวชาญ
-
-Database
-
-โปรเจกต์ใช้ Supabase โดยมีตารางหลักดังนี้
-
-users
-
-เก็บข้อมูลโปรไฟล์ของผู้ใช้ เช่น username, email และรูปโปรไฟล์
-
-face_analysis
-
-เก็บผลการวิเคราะห์ใบหน้า ได้แก่
-
-Skin Tone
-
-Undertone
-
-Face Shape
-
-Skin Type
-
-Beauty Style
-
-Analysis Status
-
-Recommendation Result
-
-cosmetic_recommendations
-
-เก็บคำแนะนำผลิตภัณฑ์เครื่องสำอางที่สัมพันธ์กับผลการวิเคราะห์
-
-ระบบมีการเปิดใช้ Row Level Security (RLS) เพื่อให้ผู้ใช้สามารถเข้าถึงข้อมูลของตนเองตามสิทธิ์ที่กำหนด
-
-Setup
-
-1. Clone หรือดาวน์โหลดโปรเจกต์
-
-git clone <repository-url>
-cd beautyai-main
-
-2. ตั้งค่า Supabase
-
-สร้างโปรเจกต์บน Supabase จากนั้นตั้งค่าฐานข้อมูลโดยนำไฟล์ต่อไปนี้ไปรันใน Supabase SQL Editor
-
+```text
 supabase/schema.sql
 supabase/storage-policies.sql
+```
 
-3. ตรวจสอบ Supabase Configuration
+ไปสร้าง Database และ Storage Policies ใน Supabase
 
-ไฟล์สำหรับเชื่อมต่อ Supabase อยู่ที่
+## การทำงานของระบบ
 
-js/supabase.js
+BeautyAI ทำงานตามลำดับ `Upload Image → Validation → Upload → Face Analysis → Recommendation → Save Result`
 
-หากนำโปรเจกต์ไปใช้กับ Supabase project ใหม่ ให้เปลี่ยน SUPABASE_URL และ SUPABASE_ANON_KEY ให้ตรงกับโปรเจกต์ของตนเอง
+1. ผู้ใช้เลือกและอัปโหลดรูปภาพ
+2. ระบบตรวจสอบประเภทและความถูกต้องของไฟล์รูปภาพ
+3. อัปโหลดรูปไปยัง Supabase Storage
+4. สร้างรายการ `face_analysis` และกำหนดสถานะเป็น `processing`
+5. วิเคราะห์รูปภาพด้วย Local Image Analysis
+6. ตรวจสอบ Face Detection และประเมินข้อมูล ได้แก่ Skin Tone, Undertone, Face Shape และ Skin Type
+7. สร้างคำแนะนำด้านเครื่องสำอางจากผลการวิเคราะห์
+8. บันทึกผลการวิเคราะห์และคำแนะนำลงใน Database
+9. เปลี่ยนสถานะการวิเคราะห์เป็น `completed`
+10. ผู้ใช้สามารถดูผลลัพธ์และประวัติการวิเคราะห์ย้อนหลังได้
 
-4. เปิดเว็บไซต์
+## Database Schema
 
-เนื่องจากโปรเจกต์ใช้ JavaScript ES Modules แนะนำให้เปิดผ่าน Local Web Server แทนการเปิดไฟล์ HTML โดยตรง
+ระบบใช้ Supabase Database โดยแบ่งข้อมูลหลักออกเป็น 3 ตาราง
 
-ตัวอย่างด้วย VS Code:
+* `users`: เก็บข้อมูลผู้ใช้ เช่น `id`, `username`, `email`, `profile_image`, `created_at` และ `updated_at`
+* `face_analysis`: เก็บผลการวิเคราะห์ เช่น `skin_tone`, `undertone`, `face_shape`, `skin_type`, `beauty_style`, `recommendation_result` และ `analysis_status`
+* `cosmetic_recommendations`: เก็บคำแนะนำผลิตภัณฑ์ เช่น `foundation`, `cushion`, `lipstick`, `blush`, `eyeshadow`, `eyebrow`, `sunscreen` และ `skincare`
 
-ติดตั้ง Extension Live Server
+ตาราง `face_analysis` เชื่อมโยงกับ `users` ผ่าน `user_id` และตาราง `cosmetic_recommendations` เชื่อมโยงกับ `face_analysis` ผ่าน `analysis_id`
 
-เปิดโฟลเดอร์ beautyai-main
+## Data Quality
 
-คลิกขวาที่ index.html
+ระบบมีการตรวจสอบข้อมูลก่อนเข้าสู่ขั้นตอนการวิเคราะห์ โดยเฉพาะไฟล์รูปภาพ เช่น ประเภทไฟล์และความถูกต้องของไฟล์
 
-เลือก Open with Live Server
+นอกจากนี้ระบบมีการตรวจสอบผลการวิเคราะห์ หากไม่พบใบหน้าในรูปภาพ ระบบจะไม่บันทึกผลเป็นข้อมูลที่สำเร็จ แต่จะเปลี่ยน `analysis_status` เป็น `failed` และแจ้งให้ผู้ใช้เลือกรูปภาพใหม่ที่มีความชัดเจนและมีแสงเพียงพอ
 
-หรือใช้ Python:
+## Image Analysis
 
-python -m http.server 8000
+BeautyAI ใช้ **Local Image Analysis** โดยไม่ต้องใช้ API Key หรือ AI API ภายนอก
 
-จากนั้นเปิด:
+ระบบประมวลผลข้อมูลจากรูปภาพด้วย **Canvas API** โดยวิเคราะห์ข้อมูล Pixel บริเวณกึ่งกลางของภาพ แล้วนำค่า RGB, Brightness และ Variance มาใช้ในการประเมินลักษณะต่าง ๆ
 
-http://localhost:8000
+ผลลัพธ์ที่ได้ประกอบด้วย
 
-Design System
+* `Skin Tone`
+* `Undertone`
+* `Face Shape`
+* `Skin Type`
+* `Image Quality`
+* `Lighting Quality`
 
-BeautyAI ใช้แนวทางการออกแบบ Soft UI Evolution โดยมีโทนสีหลักเป็นชมพูและม่วงอ่อน เพื่อให้ภาพลักษณ์สอดคล้องกับ Beauty / Wellness
+ระบบยังใช้ **SHA-256 Hash** กับไฟล์รูปภาพเพื่อให้รูปภาพเดียวกันสามารถระบุผลการวิเคราะห์เดิมได้อย่างสม่ำเสมอ
 
-Primary: #EC4899
+## Security
 
-Secondary: #F9A8D4
+ระบบใช้ **Supabase Authentication** สำหรับจัดการบัญชีผู้ใช้และ Session
 
-CTA: #8B5CF6
+สำหรับการป้องกันข้อมูล ระบบเปิดใช้งาน **Row Level Security (RLS)** กับตารางหลัก เพื่อให้ผู้ใช้สามารถเข้าถึงข้อมูลที่เป็นของตนเองเท่านั้น
 
-Background: #FDF2F8
+ตัวอย่างเช่น ผู้ใช้สามารถดูหรือแก้ไขข้อมูลใน `face_analysis` ที่มี `user_id` ตรงกับบัญชีที่กำลังเข้าสู่ระบบ และไม่สามารถเข้าถึงข้อมูลของผู้ใช้อื่นได้
 
-Text: #831843
+## Recommendation
 
-ฟอนต์หลัก:
+หลังจากวิเคราะห์ใบหน้า ระบบจะนำข้อมูล
 
-Lora — Heading
+`Skin Tone + Undertone + Face Shape + Skin Type`
 
-Raleway — Body
+ไปใช้สร้างคำแนะนำด้าน Beauty และ Cosmetic โดยผลลัพธ์จะถูกจัดเก็บใน `cosmetic_recommendations`
 
-รายละเอียดเพิ่มเติมอยู่ใน:
+ประเภทคำแนะนำประกอบด้วย
 
-design-system/beautyai/MASTER.md
+* Foundation
+* Cushion
+* Lipstick
+* Blush
+* Eyeshadow
+* Eyebrow
+* Sunscreen
+* Skincare
 
-Security
+## Idempotency / Analysis History
 
-ใช้ Supabase Authentication สำหรับการจัดการบัญชีผู้ใช้
+ระบบใช้ **SHA-256 Hash ของรูปภาพ** เพื่อสร้างตัวระบุที่คงที่สำหรับไฟล์เดียวกัน ทำให้สามารถตรวจสอบผลการวิเคราะห์เดิมของรูปภาพได้
 
-ใช้ Row Level Security (RLS) สำหรับจำกัดการเข้าถึงข้อมูล
+ผลการวิเคราะห์ที่สำเร็จจะถูกบันทึกไว้ใน `face_analysis` และผู้ใช้สามารถเรียกดูประวัติย้อนหลังได้ โดยระบบเรียงข้อมูลจากการวิเคราะห์ล่าสุดไปยังรายการเก่า
 
-ใช้ Session persistence และ Auto Refresh Token
+หากผู้ใช้ลบประวัติการวิเคราะห์ ระบบจะลบข้อมูล Recommendation ที่เชื่อมโยงกันด้วย `ON DELETE CASCADE` และลบไฟล์รูปภาพจาก Supabase Storage
 
-มีระบบ Validation สำหรับข้อมูลที่ผู้ใช้กรอก
+## Reflection
 
-ควรใช้เฉพาะ Supabase key ที่ออกแบบมาสำหรับฝั่ง Client และไม่ควรนำ service_role key ไปไว้ใน Frontend
+**Availability มีความสำคัญต่อระบบ BeautyAI เพราะระบบควรสามารถให้บริการผู้ใช้ต่อได้ แม้ว่าการวิเคราะห์รูปภาพบางรายการจะเกิดข้อผิดพลาด**
 
-Limitations
+ระบบจึงแยกสถานะของการวิเคราะห์เป็น `pending`, `processing`, `completed` และ `failed` ทำให้ข้อผิดพลาดของรูปภาพหนึ่งรายการไม่ส่งผลให้ระบบทั้งหมดหยุดทำงาน ผู้ใช้สามารถแก้ไขปัญหาโดยอัปโหลดรูปใหม่ได้ ขณะที่ข้อมูลของการวิเคราะห์รายการอื่นที่สำเร็จแล้วจะยังคงอยู่ในระบบ
 
-การวิเคราะห์ใบหน้าเป็นการประเมินจาก Pixel และกฎที่กำหนดไว้ ไม่ใช่การตรวจจับใบหน้าด้วยโมเดล AI ขั้นสูง
+แนวทางนี้ช่วยให้ระบบมีความต่อเนื่องในการให้บริการ และสามารถติดตามสถานะของการวิเคราะห์แต่ละรายการได้อย่างชัดเจน
 
-Face Shape ไม่ได้ถูกตรวจจับจากจุด landmark ของใบหน้าโดยตรง
+## ข้อจำกัดของระบบ
 
-ผล Skin Tone และ Skin Type อาจเปลี่ยนแปลงตามแสง สีของภาพ และคุณภาพของรูป
+* การวิเคราะห์เป็น Local Image Analysis ไม่ใช่ AI Model สำหรับ Face Recognition โดยตรง
+* ผล Skin Tone อาจได้รับผลกระทบจากแสงและคุณภาพของภาพ
+* Face Shape เป็นการประเมินเบื้องต้นและไม่ได้ใช้ Facial Landmark Model
+* Skin Type เป็นการประมาณจากข้อมูล Pixel และ Color Variance
+* ผลลัพธ์ไม่ควรใช้แทนคำแนะนำจากผู้เชี่ยวชาญด้านผิวหนังหรือความงาม
 
-ระบบควรใช้เป็นเครื่องมือช่วยแนะนำเบื้องต้น ไม่ใช่การวินิจฉัยสภาพผิวทางการแพทย์
+## ผลการทำงานของระบบ
 
-Future Improvements
+เมื่อการวิเคราะห์สำเร็จ ระบบจะแสดงข้อมูลผลการวิเคราะห์ให้ผู้ใช้ พร้อมคำแนะนำด้านเครื่องสำอางที่สัมพันธ์กับลักษณะของผู้ใช้
 
-เพิ่ม Face Detection และ Facial Landmark Model
+ผลลัพธ์ที่ระบบสามารถแสดงได้ ได้แก่
 
-เพิ่ม AI Model สำหรับวิเคราะห์ผิวที่แม่นยำขึ้น
+* **Skin Tone:** Fair / Light / Medium / Tan / Deep
+* **Undertone:** Warm / Cool / Neutral
+* **Face Shape:** Oval / Round / Square / Heart / Diamond / Rectangle / Oblong
+* **Skin Type:** Dry / Oily / Combination / Sensitive / Normal
+* **Beauty Style:** สไตล์ที่เหมาะสมกับผลการวิเคราะห์
+* **Cosmetic Recommendation:** คำแนะนำ Foundation, Cushion, Lipstick, Blush, Eyeshadow, Eyebrow, Sunscreen และ Skincare
 
-เพิ่มระบบ Personalized Recommendation จากประวัติการใช้งาน
-
-เพิ่มการให้คะแนนและ Feedback จากผู้ใช้
-
-เพิ่มฐานข้อมูลผลิตภัณฑ์จริงและข้อมูลส่วนผสม
-
-เพิ่มระบบค้นหาและเปรียบเทียบผลิตภัณฑ์
-
-เพิ่มระบบ Recommendation ที่เรียนรู้จากพฤติกรรมของผู้ใช้
-
-License
-
-โปรเจกต์นี้จัดทำขึ้นเพื่อการศึกษาและการพัฒนาโปรเจกต์ BeautyAI
+ระบบยังสามารถบันทึกผลการวิเคราะห์และเรียกดูย้อนหลังผ่านหน้า **History** ได้

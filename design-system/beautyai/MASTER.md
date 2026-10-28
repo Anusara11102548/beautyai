@@ -18,10 +18,10 @@
 
 | Role | Hex | CSS Variable |
 |------|-----|--------------|
-| Primary | `#EC4899` | `--color-primary` |
-| Secondary | `#F9A8D4` | `--color-secondary` |
-| CTA/Accent | `#8B5CF6` | `--color-cta` |
-| Background | `#FDF2F8` | `--color-background` |
+| Primary | `#75617f` | `--color-primary` |
+| Secondary | `#b7a5bf` | `--color-secondary` |
+| CTA/Accent | `#8a7a91` | `--color-cta` |
+| Background | `#f7f5f3` | `--color-background` |
 | Text | `#831843` | `--color-text` |
 
 **Color Notes:** Soft pink + lavender luxury
@@ -68,7 +68,7 @@
 ```css
 /* Primary Button */
 .btn-primary {
-  background: #8B5CF6;
+  background: #8a7a91;
   color: white;
   padding: 12px 24px;
   border-radius: 8px;
@@ -85,8 +85,8 @@
 /* Secondary Button */
 .btn-secondary {
   background: transparent;
-  color: #EC4899;
-  border: 2px solid #EC4899;
+  color: #75617f;
+  border: 2px solid #75617f;
   padding: 12px 24px;
   border-radius: 8px;
   font-weight: 600;
@@ -99,7 +99,7 @@
 
 ```css
 .card {
-  background: #FDF2F8;
+  background: #f7f5f3;
   border-radius: 12px;
   padding: 24px;
   box-shadow: var(--shadow-md);
@@ -125,9 +125,9 @@
 }
 
 .input:focus {
-  border-color: #EC4899;
+  border-color: #75617f;
   outline: none;
-  box-shadow: 0 0 0 3px #EC489920;
+  box-shadow: 0 0 0 3px #75617f20;
 }
 ```
 

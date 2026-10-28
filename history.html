@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
@@ -11,7 +11,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-<body style="background-color:#FDF2F8;min-height:100vh;">
+<body style="background-color:#f7f5f3;min-height:100vh;">
 
 <div id="navbar-container"></div>
 
@@ -43,7 +43,7 @@
     <!-- Empty state -->
     <div id="empty-state" class="hidden" style="text-align:center;padding:5rem 1rem;">
       <div style="width:5rem;height:5rem;border-radius:1.25rem;background:rgba(236,72,153,0.07);border:1px solid rgba(236,72,153,0.15);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#EC4899" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#75617f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
       </div>
       <h2 style="font-family:'Lora',serif;font-weight:600;font-size:1.25rem;color:#1e1b4b;margin:0 0 0.625rem;">No analyses yet</h2>
       <p style="font-family:'Raleway',sans-serif;font-size:0.9375rem;color:#64748b;margin:0 0 1.5rem;max-width:360px;margin-left:auto;margin-right:auto;line-height:1.65;">Upload your first photo to start building your beauty profile and get personalized recommendations.</p>
@@ -113,7 +113,7 @@
 
     const card = document.createElement('div');
     card.id = `history-card-${item.id}`;
-    card.style.cssText = 'background:#fff;border-radius:1rem;border:1px solid #fce7f3;box-shadow:0 2px 8px rgba(0,0,0,0.05);overflow:hidden;transition:box-shadow 200ms,transform 200ms;cursor:default;';
+    card.style.cssText = 'background:#fff;border-radius:1rem;border:1px solid #eee7f0;box-shadow:0 2px 8px rgba(0,0,0,0.05);overflow:hidden;transition:box-shadow 200ms,transform 200ms;cursor:default;';
     card.onmouseenter = () => { card.style.boxShadow='0 8px 24px rgba(0,0,0,0.08)'; card.style.transform='translateY(-2px)'; };
     card.onmouseleave = () => { card.style.boxShadow='0 2px 8px rgba(0,0,0,0.05)'; card.style.transform='translateY(0)'; };
 
@@ -134,11 +134,11 @@
               ${item.undertone ? `<span style="background:rgba(100,116,139,0.08);color:#475569;border:1px solid rgba(100,116,139,0.20);font-family:'Raleway',sans-serif;font-size:0.6875rem;font-weight:600;padding:0.15rem 0.5rem;border-radius:9999px;">${cap(item.undertone)}</span>` : ''}
               ${item.skin_type ? `<span style="background:rgba(34,197,94,0.08);color:#16a34a;border:1px solid rgba(34,197,94,0.20);font-family:'Raleway',sans-serif;font-size:0.6875rem;font-weight:700;padding:0.15rem 0.5rem;border-radius:9999px;">${cap(item.skin_type)}</span>` : ''}
             </div>
-            ${item.beauty_style ? `<p style="font-family:'Raleway',sans-serif;font-size:0.75rem;color:#8B5CF6;font-weight:600;margin:0;">${item.beauty_style}</p>` : ''}
+            ${item.beauty_style ? `<p style="font-family:'Raleway',sans-serif;font-size:0.75rem;color:#8a7a91;font-weight:600;margin:0;">${item.beauty_style}</p>` : ''}
           </div>
           <div style="display:flex;align-items:center;justify-content:space-between;margin-top:0.75rem;padding-top:0.625rem;border-top:1px solid #f1f5f9;">
             <button onclick="viewDetails('${item.id}')"
-              style="padding:0.375rem 0.875rem;border-radius:0.5rem;background:linear-gradient(135deg,#EC4899,#c026d3);color:#fff;border:none;font-family:'Raleway',sans-serif;font-size:0.8125rem;font-weight:600;cursor:pointer;transition:opacity 200ms;"
+              style="padding:0.375rem 0.875rem;border-radius:0.5rem;background:linear-gradient(135deg,#75617f,#8a7a91);color:#fff;border:none;font-family:'Raleway',sans-serif;font-size:0.8125rem;font-weight:600;cursor:pointer;transition:opacity 200ms;"
               onmouseenter="this.style.opacity='0.85'" onmouseleave="this.style.opacity='1'">View</button>
             <button onclick="confirmDelete('${item.id}','${item.uploaded_image||''}')"
               style="padding:0.375rem 0.625rem;border-radius:0.5rem;background:transparent;color:#94a3b8;border:none;font-family:'Raleway',sans-serif;font-size:0.8125rem;cursor:pointer;transition:color 200ms;display:flex;align-items:center;gap:0.25rem;"

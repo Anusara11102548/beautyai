@@ -88,7 +88,7 @@ async function loadHistory(page = 1) {
 async function createHistoryCard(item) {
   const card = document.createElement('div');
   card.id = `history-card-${item.id}`;
-  card.style.cssText = 'background:#fff;border-radius:1rem;border:1px solid #fce7f3;box-shadow:0 2px 8px rgba(0,0,0,0.05);overflow:hidden;transition:box-shadow 200ms,transform 200ms;';
+  card.style.cssText = 'background:#fff;border-radius:1rem;border:1px solid #eee7f0;box-shadow:0 2px 8px rgba(0,0,0,0.05);overflow:hidden;transition:box-shadow 200ms,transform 200ms;';
   card.addEventListener('mouseenter', () => { card.style.boxShadow = '0 8px 24px rgba(0,0,0,0.08)'; card.style.transform = 'translateY(-2px)'; });
   card.addEventListener('mouseleave', () => { card.style.boxShadow = '0 2px 8px rgba(0,0,0,0.05)'; card.style.transform = 'translateY(0)'; });
 
@@ -125,11 +125,11 @@ async function createHistoryCard(item) {
             ${item.undertone  ? badge('rgba(100,116,139,0.08)', '#475569', 'rgba(100,116,139,0.20)', capitalize(item.undertone)) : ''}
             ${item.skin_type  ? badge('rgba(34,197,94,0.08)', '#16a34a', 'rgba(34,197,94,0.20)', capitalize(item.skin_type)) : ''}
           </div>
-          ${item.beauty_style ? `<p style="font-family:'Raleway',sans-serif;font-size:0.75rem;color:#8B5CF6;font-weight:600;margin:0;">${item.beauty_style}</p>` : ''}
+          ${item.beauty_style ? `<p style="font-family:'Raleway',sans-serif;font-size:0.75rem;color:#8a7a91;font-weight:600;margin:0;">${item.beauty_style}</p>` : ''}
         </div>
         <div style="display:flex;align-items:center;justify-content:space-between;margin-top:0.625rem;padding-top:0.5rem;border-top:1px solid #f1f5f9;">
           <button onclick="viewDetails('${item.id}')"
-            style="padding:0.375rem 0.875rem;border-radius:0.5rem;background:linear-gradient(135deg,#EC4899,#c026d3);color:#fff;border:none;font-family:'Raleway',sans-serif;font-size:0.8125rem;font-weight:600;cursor:pointer;transition:opacity 200ms;"
+            style="padding:0.375rem 0.875rem;border-radius:0.5rem;background:linear-gradient(135deg,#75617f,#8a7a91);color:#fff;border:none;font-family:'Raleway',sans-serif;font-size:0.8125rem;font-weight:600;cursor:pointer;transition:opacity 200ms;"
             onmouseenter="this.style.opacity='0.85'" onmouseleave="this.style.opacity='1'">View</button>
           <button onclick="confirmDelete('${item.id}','${item.uploaded_image || ''}')"
             style="padding:0.375rem 0.5rem;border-radius:0.5rem;background:transparent;color:#94a3b8;border:none;cursor:pointer;transition:color 200ms;display:flex;align-items:center;gap:0.25rem;font-family:'Raleway',sans-serif;font-size:0.8125rem;"
@@ -155,7 +155,7 @@ function renderPagination(container, current, total) {
   container.classList.remove('hidden');
 
   const btnBase = 'font-family:\'Raleway\',sans-serif;font-size:0.875rem;font-weight:600;border-radius:0.5rem;padding:0.5rem 0.875rem;border:1.5px solid;cursor:pointer;transition:all 200ms;min-width:2.5rem;text-align:center;';
-  const btnActive = `${btnBase}background:linear-gradient(135deg,#EC4899,#c026d3);color:#fff;border-color:transparent;`;
+  const btnActive = `${btnBase}background:linear-gradient(135deg,#75617f,#8a7a91);color:#fff;border-color:transparent;`;
   const btnNormal = `${btnBase}background:#fff;color:#475569;border-color:#e2e8f0;`;
   const btnDisabled = `${btnBase}background:#f8fafc;color:#cbd5e1;border-color:#f1f5f9;cursor:not-allowed;`;
 

@@ -87,7 +87,7 @@ async function initSidebar() {
                   href="${link.href}"
                   class="sidebar-link ${isActive ? 'active' : ''}"
                   aria-current="${isActive ? 'page' : 'false'}"
-                  style="${isActive ? 'background:rgba(236,72,153,0.09); color:#EC4899; font-weight:600; border-left:3px solid #EC4899;' : ''}"
+                  style="${isActive ? 'background:rgba(236,72,153,0.09); color:#75617f; font-weight:600; border-left:3px solid #75617f;' : ''}"
                 >
                   ${link.icon}
                   ${link.label}

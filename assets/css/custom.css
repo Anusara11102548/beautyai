@@ -1,23 +1,23 @@
 /* ============================================================
    BeautyAI — Design System CSS  v2
-   Style: Soft UI Evolution | Primary: #EC4899 | CTA: #8B5CF6
-   Fonts: Lora (headings) + Raleway (body)
+   Style: Soft UI Evolution | Primary: #75617f | CTA: #8a7a91
+   Fonts: Prompt (entire website)
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Raleway:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap');
 
 /* ── CSS Design Tokens ────────────────────────────────────── */
 :root {
-  --color-primary:    #EC4899;
-  --color-primary-50: #fdf2f8;
-  --color-primary-100:#fce7f3;
-  --color-primary-200:#fbcfe8;
-  --color-secondary:  #F9A8D4;
-  --color-cta:        #8B5CF6;
+  --color-primary:    #75617f;
+  --color-primary-50: #f7f5f3;
+  --color-primary-100:#eee7f0;
+  --color-primary-200:#dfd2e3;
+  --color-secondary:  #b7a5bf;
+  --color-cta:        #8a7a91;
   --color-cta-dark:   #7c3aed;
-  --color-background: #FDF2F8;
+  --color-background: #f7f5f3;
   --color-surface:    #FFFFFF;
-  --color-border:     #fce7f3;
+  --color-border:     #eee7f0;
   --color-border-mid: #e2e8f0;
   --color-text:       #1e293b;
   --color-text-muted: #64748b;
@@ -104,9 +104,9 @@ h1, h2, h3, h4, h5, h6, .font-heading {
 @media (min-width: 1024px) { .page-container { padding: 0 2rem; } }
 
 /* ── Gradients ────────────────────────────────────────────── */
-.gradient-primary { background: linear-gradient(135deg, var(--color-primary) 0%, #c026d3 50%, var(--color-cta) 100%); }
-.gradient-beauty  { background: linear-gradient(135deg, #EC4899 0%, #c026d3 50%, #8B5CF6 100%) !important; color:#fff!important; border:none!important; }
-.gradient-soft    { background: linear-gradient(135deg, #fdf2f8 0%, #f5f3ff 100%); }
+.gradient-primary { background: linear-gradient(135deg, var(--color-primary) 0%, #8a7a91 50%, var(--color-cta) 100%); }
+.gradient-beauty  { background: linear-gradient(135deg, #75617f 0%, #8a7a91 50%, #8a7a91 100%) !important; color:#fff!important; border:none!important; }
+.gradient-soft    { background: linear-gradient(135deg, #f7f5f3 0%, #f5f3ff 100%); }
 .gradient-text    { background: linear-gradient(135deg, var(--color-primary), var(--color-cta)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
 .gradient-pink-soft { background: linear-gradient(135deg, rgba(236,72,153,0.08) 0%, rgba(139,92,246,0.06) 100%); }
 
@@ -125,7 +125,7 @@ h1, h2, h3, h4, h5, h6, .font-heading {
 
 /* ── Buttons ──────────────────────────────────────────────── */
 .btn-beauty-primary {
-  background: linear-gradient(135deg, var(--color-primary), #c026d3);
+  background: linear-gradient(135deg, var(--color-primary), #8a7a91);
   color: #fff;
   padding: 0.75rem 1.5rem;
   border-radius: var(--radius-md);
@@ -457,7 +457,7 @@ h1, h2, h3, h4, h5, h6, .font-heading {
 
 /* ── Skeleton ─────────────────────────────────────────────── */
 .skeleton-beauty {
-  background: linear-gradient(90deg, #fce7f3 25%, #fbcfe8 50%, #fce7f3 75%);
+  background: linear-gradient(90deg, #eee7f0 25%, #dfd2e3 50%, #eee7f0 75%);
   background-size: 200% 100%;
   animation: shimmer 1.6s infinite;
   border-radius: var(--radius-md);
@@ -580,4 +580,213 @@ h1, h2, h3, h4, h5, h6, .font-heading {
   .no-print { display: none !important; }
   body { background: #fff !important; }
   .card-beauty { box-shadow: none !important; border: 1px solid #e2e8f0 !important; }
+}
+
+
+/* =========================================================
+   BeautyAI Professional Editorial Refresh — actual overrides
+   Palette: ivory / muted plum / warm grey
+   ========================================================= */
+:root {
+ --color-primary:#75617f !important;
+ --color-primary-50:#f7f4f7 !important;
+ --color-primary-100:#eee7f0 !important;
+ --color-primary-200:#dfd2e3 !important;
+ --color-secondary:#b7a5bf !important;
+ --color-cta:#75617f !important;
+ --color-cta-dark:#5d4b66 !important;
+ --color-background:#f7f5f3 !important;
+ --color-surface:#ffffff !important;
+ --color-border:#e9e2e9 !important;
+ --color-border-mid:#ded8df !important;
+ --color-text:#29252c !important;
+ --color-text-muted:#77717b !important;
+ --color-text-faint:#9b949e !important;
+ --shadow-pink:0 5px 16px rgba(80,61,88,.13) !important;
+ --shadow-pink-lg:0 8px 22px rgba(80,61,88,.18) !important;
+}
+html, body { background:#f7f5f3 !important; color:#29252c !important; }
+body { font-family:'Raleway',Arial,sans-serif !important; }
+h1,h2,h3,h4,h5,h6,.font-heading { color:#302735 !important; }
+.navbar-beautyai { background:rgba(255,255,255,.96) !important; border-bottom:1px solid #e7e0e8 !important; }
+.gradient-primary,.gradient-beauty,.btn-beauty-primary {
+ background:#75617f !important; background-image:none !important; color:#fff !important;
+ box-shadow:0 4px 12px rgba(80,61,88,.15) !important; border:1px solid #75617f !important;
+}
+.btn-beauty-primary:hover { background:#5d4b66 !important; transform:translateY(-1px); }
+.gradient-soft,.gradient-pink-soft { background:linear-gradient(135deg,#f8f5f8,#f3f0f3) !important; }
+.gradient-text { background:none !important; -webkit-text-fill-color:#75617f !important; color:#75617f !important; }
+.card,.card-beauty,.panel-beauty,.bg-base-100 {
+ background:#fff !important; border-color:#e7e0e8 !important;
+ box-shadow:0 2px 8px rgba(43,33,47,.035) !important;
+}
+input,select,textarea,.input,.select,.textarea {
+ border-color:#dcd4df !important; border-radius:10px !important;
+}
+a { transition:color .18s ease, background .18s ease; }
+a:hover { color:#5d4b66; }
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible {
+ outline:3px solid rgba(117,97,127,.28) !important; outline-offset:2px;
+}
+main { max-width:1600px; }
+#dashboard-content > div, #rec-content > div { border-radius:16px; }
+@media (min-width:1024px) {
+ #hero-grid { grid-template-columns:minmax(0,1.05fr) minmax(360px,.95fr) !important; gap:5rem !important; }
+}
+@media (max-width:767px) {
+ main { padding:1rem !important; }
+ #hero-grid { gap:2rem !important; }
+}
+
+
+/* BeautyAI typography: IBM Plex Sans Thai throughout the entire interface */
+html, body, body *, button, input, select, textarea, option,
+.navbar-beautyai, .font-heading, h1, h2, h3, h4, h5, h6,
+.material-symbols-outlined {
+  font-family: 'IBM Plex Sans Thai', sans-serif !important;
+}
+
+html { font-synthesis: none; }
+body { font-weight: 400; line-height: 1.65; }
+h1, h2, h3, h4, h5, h6 { font-weight: 600; letter-spacing: 0; line-height: 1.45; }
+button, .btn, a { font-weight: 500; }
+small, .text-xs, .text-sm { letter-spacing: 0; }
+
+
+/* ============================================================
+   BeautyAI — Prompt typography applied site-wide
+   Uses the same Prompt family for Thai and Latin text on every page.
+   ============================================================ */
+html, body,
+body *,
+button, input, select, textarea,
+button *, input *, select *, textarea *,
+.navbar-beautyai, .navbar-beautyai *,
+.sidebar-beautyai, .sidebar-beautyai *,
+.font-heading, h1, h2, h3, h4, h5, h6,
+p, a, label, small, strong, em, span, li, td, th {
+  font-family: 'Prompt', sans-serif !important;
+}
+
+html { font-synthesis: none; }
+body { font-weight: 400; }
+h1, h2, h3, h4, h5, h6 { font-weight: 600; }
+button, .btn, [role="button"] { font-weight: 500; }
+
+
+/* ============================================================
+   BEAUTYAI — Refined editorial redesign
+   Elegant ivory, deep plum and muted rose; consistent on all pages.
+   ============================================================ */
+:root {
+  --color-primary: #5b4663;
+  --color-primary-50: #f8f4f7;
+  --color-primary-100: #f0e7ef;
+  --color-primary-200: #e4d3e0;
+  --color-secondary: #b89aaa;
+  --color-cta: #65506d;
+  --color-cta-dark: #49364f;
+  --color-background: #f8f6f4;
+  --color-surface: #ffffff;
+  --color-border: #e9e1e7;
+  --color-border-mid: #d9cbd7;
+  --color-text: #302934;
+  --color-text-muted: #746a77;
+  --color-text-faint: #9b909d;
+  --shadow-pink: 0 4px 14px rgba(73,54,79,.08);
+  --shadow-pink-lg: 0 10px 28px rgba(73,54,79,.12);
+}
+html, body { background: #f8f6f4 !important; color: #302934 !important; }
+body { font-family: 'Prompt', sans-serif !important; line-height: 1.7; }
+body::selection { background: #e9d8e5; color: #302934; }
+main, .page-container { max-width: 1480px; }
+
+/* Elegant top navigation and side navigation */
+.navbar-beautyai {
+  background: rgba(255,255,255,.94) !important;
+  border-bottom: 1px solid #e9e1e7 !important;
+  box-shadow: 0 2px 14px rgba(55,39,60,.025) !important;
+  backdrop-filter: blur(14px);
+}
+.sidebar-beautyai { background: #fff !important; border-right: 1px solid #eee7ed !important; }
+.sidebar-link { border-radius: 11px !important; transition: background .18s ease, color .18s ease, transform .18s ease; }
+.sidebar-link:hover { background: #f8f3f7 !important; color: #49364f !important; }
+.sidebar-link.active, .sidebar-link[aria-current="page"] {
+  background: #f3eaf1 !important; color: #49364f !important; font-weight: 600 !important;
+}
+
+/* Stronger typographic hierarchy */
+h1, h2, h3, h4, h5, h6, .font-heading { color: #35283b !important; letter-spacing: -.018em; }
+h1 { line-height: 1.25 !important; }
+p { color: inherit; }
+.text-slate-500, .text-gray-500, .text-muted { color: #786e7b !important; }
+.gradient-text { background: none !important; -webkit-text-fill-color: #765b79 !important; color: #765b79 !important; }
+
+/* Cards: subtle border, soft depth, less visual noise */
+.card, .card-beauty, .card-soft, .card-stat, .panel-beauty, .result-card, .bg-base-100 {
+  background: #fff !important;
+  border: 1px solid #e9e1e7 !important;
+  border-radius: 18px !important;
+  box-shadow: 0 3px 12px rgba(54,38,59,.035) !important;
+}
+.card-beauty-hover:hover, .card:hover, .card-stat:hover {
+  box-shadow: 0 9px 24px rgba(54,38,59,.075) !important;
+  transform: translateY(-2px);
+}
+.card-stat { padding: 1.35rem !important; transition: transform .2s ease, box-shadow .2s ease; }
+
+/* Consistent premium buttons */
+.gradient-primary, .gradient-beauty, .btn-beauty-primary, .btn-beauty-cta {
+  background: #65506d !important;
+  background-image: none !important;
+  color: #fff !important;
+  border: 1px solid #65506d !important;
+  border-radius: 11px !important;
+  box-shadow: 0 4px 10px rgba(73,54,79,.12) !important;
+  font-weight: 500 !important;
+  transition: background .18s ease, transform .18s ease, box-shadow .18s ease;
+}
+.gradient-primary:hover, .gradient-beauty:hover, .btn-beauty-primary:hover, .btn-beauty-cta:hover {
+  background: #49364f !important; border-color: #49364f !important;
+  transform: translateY(-1px); box-shadow: 0 7px 16px rgba(73,54,79,.16) !important;
+}
+.btn-beauty-outline, .btn-beauty-ghost {
+  color: #65506d !important; border: 1px solid #d9cbd7 !important;
+  background: #fff !important; border-radius: 11px !important;
+}
+.btn-beauty-outline:hover, .btn-beauty-ghost:hover { background: #f8f3f7 !important; border-color: #b89aaa !important; }
+
+/* Inputs and focus states */
+input, select, textarea, .input, .select, .textarea {
+  background-color: #fff !important; border-color: #ded4df !important;
+  border-radius: 11px !important; color: #302934 !important;
+}
+input:focus, select:focus, textarea:focus, .input:focus, .select:focus, .textarea:focus {
+  border-color: #9c7d9e !important; box-shadow: 0 0 0 3px rgba(156,125,158,.13) !important; outline: none !important;
+}
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 3px solid rgba(156,125,158,.28) !important; outline-offset: 2px;
+}
+
+/* Dashboard composition */
+#dashboard-content > div:first-child { margin-bottom: 1.75rem !important; }
+#dashboard-content .grid.grid-cols-1.lg\:grid-cols-3 { align-items: start; }
+#dashboard-content .lg\:col-span-2, #dashboard-content .lg\:col-span-1 { min-width: 0; }
+#dashboard-content .lg\:col-span-1 > .card-beauty { height: auto; }
+#dashboard-content #recent-list > div { border-radius: 12px !important; border-color: #e6dce5 !important; }
+#dashboard-content h2 { font-size: 1.05rem !important; letter-spacing: -.01em; }
+#dashboard-content .card-stat p:first-of-type { letter-spacing: -.035em; }
+
+/* Softer utility accents, avoid loud pink/purple gradients */
+.gradient-soft, .gradient-pink-soft { background: linear-gradient(135deg,#fbf8fa,#f6f1f6) !important; }
+.bg-pink-50, .bg-purple-50, .bg-violet-50 { background-color: #f8f3f7 !important; }
+.border-pink-100, .border-purple-100, .border-violet-100 { border-color: #eadde8 !important; }
+
+/* Responsive spacing and accessibility */
+@media (min-width: 1024px) {
+  #dashboard-content .grid.grid-cols-1.lg\:grid-cols-3 { gap: 1.25rem !important; }
+}
+@media (max-width: 767px) {
+  main { padding: 1rem !important; }
+  .card, .card-beauty, .card-stat { border-radius: 15px !important; }
 }

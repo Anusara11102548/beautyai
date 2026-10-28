@@ -1,6 +1,6 @@
 // ============================================================
 // BeautyAI Navbar Component
-// Design System: Lora/Raleway, #EC4899 pink, #8B5CF6 purple
+// Design System: Lora/Raleway, #75617f pink, #8a7a91 purple
 // Rules: SVG icons only, cursor-pointer, smooth transitions
 // ============================================================
 
@@ -19,7 +19,7 @@ const NAV_LINKS_AUTH = [
 // SVG icon helpers
 const ICONS = {
   logo: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="url(#logo-grad)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-    <defs><linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#EC4899"/><stop offset="100%" stop-color="#8B5CF6"/></linearGradient></defs>
+    <defs><linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#75617f"/><stop offset="100%" stop-color="#8a7a91"/></linearGradient></defs>
     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
     <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
     <line x1="9" y1="9" x2="9.01" y2="9"/>
@@ -85,7 +85,7 @@ async function initNavbar() {
         <a href="index.html" class="flex items-center gap-2 flex-shrink-0" style="text-decoration:none; cursor:pointer;"
            aria-label="BeautyAI home">
           ${ICONS.logo}
-          <span style="font-family:'Lora',serif; font-weight:700; font-size:1.25rem; background:linear-gradient(135deg,#EC4899,#8B5CF6); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">
+          <span style="font-family:'Lora',serif; font-weight:700; font-size:1.25rem; background:linear-gradient(135deg,#75617f,#8a7a91); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">
             BeautyAI
           </span>
         </a>
@@ -95,8 +95,8 @@ async function initNavbar() {
           ${navLinks.map(l => `
             <li>
               <a href="${l.href}"
-                 style="padding:0.5rem 0.875rem; border-radius:0.5rem; font-family:'Raleway',sans-serif; font-size:0.875rem; font-weight:${currentPage === l.href ? '600' : '500'}; color:${currentPage === l.href ? '#EC4899' : '#475569'}; background:${currentPage === l.href ? 'rgba(236,72,153,0.08)' : 'transparent'}; text-decoration:none; cursor:pointer; transition:all 200ms ease; display:block;"
-                 onmouseover="if('${currentPage}' !== '${l.href}'){this.style.background='rgba(236,72,153,0.06)';this.style.color='#EC4899';}"
+                 style="padding:0.5rem 0.875rem; border-radius:0.5rem; font-family:'Raleway',sans-serif; font-size:0.875rem; font-weight:${currentPage === l.href ? '600' : '500'}; color:${currentPage === l.href ? '#75617f' : '#475569'}; background:${currentPage === l.href ? 'rgba(236,72,153,0.08)' : 'transparent'}; text-decoration:none; cursor:pointer; transition:all 200ms ease; display:block;"
+                 onmouseover="if('${currentPage}' !== '${l.href}'){this.style.background='rgba(236,72,153,0.06)';this.style.color='#75617f';}"
                  onmouseout="if('${currentPage}' !== '${l.href}'){this.style.background='transparent';this.style.color='#475569';}"
               >${l.label}</a>
             </li>
@@ -114,11 +114,11 @@ async function initNavbar() {
             <a href="login.html"
                class="hidden sm:block"
                style="padding:0.5rem 1rem; border-radius:0.5rem; font-family:'Raleway',sans-serif; font-size:0.875rem; font-weight:600; color:#475569; text-decoration:none; cursor:pointer; transition:all 200ms ease;"
-               onmouseover="this.style.color='#EC4899'; this.style.background='rgba(236,72,153,0.06)';"
+               onmouseover="this.style.color='#75617f'; this.style.background='rgba(236,72,153,0.06)';"
                onmouseout="this.style.color='#475569'; this.style.background='transparent';"
             >Sign In</a>
             <a href="register.html"
-               style="padding:0.5rem 1.25rem; border-radius:0.5rem; font-family:'Raleway',sans-serif; font-size:0.875rem; font-weight:600; background:linear-gradient(135deg,#EC4899,#c026d3); color:white; text-decoration:none; cursor:pointer; transition:all 200ms ease; box-shadow:0 4px 12px rgba(236,72,153,0.3);"
+               style="padding:0.5rem 1.25rem; border-radius:0.5rem; font-family:'Raleway',sans-serif; font-size:0.875rem; font-weight:600; background:linear-gradient(135deg,#75617f,#8a7a91); color:white; text-decoration:none; cursor:pointer; transition:all 200ms ease; box-shadow:0 4px 12px rgba(236,72,153,0.3);"
                onmouseover="this.style.opacity='0.92'; this.style.transform='translateY(-1px)';"
                onmouseout="this.style.opacity='1'; this.style.transform='translateY(0)';"
             >Get Started</a>
@@ -154,13 +154,13 @@ async function initNavbar() {
               <div style="padding:0.5rem 0.75rem 0.625rem; border-bottom:1px solid #f1f5f9; margin-bottom:0.25rem;">
                 <p style="font-family:'Raleway',sans-serif; font-size:0.875rem; font-weight:700; color:#1e293b; margin:0;">${profile?.username || 'User'}</p>
               </div>
-              <a href="dashboard.html" role="menuitem" style="display:flex;align-items:center;gap:0.625rem;padding:0.5rem 0.75rem;border-radius:0.5rem;font-family:'Raleway',sans-serif;font-size:0.8125rem;font-weight:500;color:#475569;text-decoration:none;cursor:pointer;transition:all 150ms;" onmouseover="this.style.background='rgba(236,72,153,0.07)';this.style.color='#EC4899';" onmouseout="this.style.background='transparent';this.style.color='#475569';">
+              <a href="dashboard.html" role="menuitem" style="display:flex;align-items:center;gap:0.625rem;padding:0.5rem 0.75rem;border-radius:0.5rem;font-family:'Raleway',sans-serif;font-size:0.8125rem;font-weight:500;color:#475569;text-decoration:none;cursor:pointer;transition:all 150ms;" onmouseover="this.style.background='rgba(236,72,153,0.07)';this.style.color='#75617f';" onmouseout="this.style.background='transparent';this.style.color='#475569';">
                 ${ICONS.dashboard} Dashboard
               </a>
-              <a href="profile.html" role="menuitem" style="display:flex;align-items:center;gap:0.625rem;padding:0.5rem 0.75rem;border-radius:0.5rem;font-family:'Raleway',sans-serif;font-size:0.8125rem;font-weight:500;color:#475569;text-decoration:none;cursor:pointer;transition:all 150ms;" onmouseover="this.style.background='rgba(236,72,153,0.07)';this.style.color='#EC4899';" onmouseout="this.style.background='transparent';this.style.color='#475569';">
+              <a href="profile.html" role="menuitem" style="display:flex;align-items:center;gap:0.625rem;padding:0.5rem 0.75rem;border-radius:0.5rem;font-family:'Raleway',sans-serif;font-size:0.8125rem;font-weight:500;color:#475569;text-decoration:none;cursor:pointer;transition:all 150ms;" onmouseover="this.style.background='rgba(236,72,153,0.07)';this.style.color='#75617f';" onmouseout="this.style.background='transparent';this.style.color='#475569';">
                 ${ICONS.user} Profile
               </a>
-              <a href="history.html" role="menuitem" style="display:flex;align-items:center;gap:0.625rem;padding:0.5rem 0.75rem;border-radius:0.5rem;font-family:'Raleway',sans-serif;font-size:0.8125rem;font-weight:500;color:#475569;text-decoration:none;cursor:pointer;transition:all 150ms;" onmouseover="this.style.background='rgba(236,72,153,0.07)';this.style.color='#EC4899';" onmouseout="this.style.background='transparent';this.style.color='#475569';">
+              <a href="history.html" role="menuitem" style="display:flex;align-items:center;gap:0.625rem;padding:0.5rem 0.75rem;border-radius:0.5rem;font-family:'Raleway',sans-serif;font-size:0.8125rem;font-weight:500;color:#475569;text-decoration:none;cursor:pointer;transition:all 150ms;" onmouseover="this.style.background='rgba(236,72,153,0.07)';this.style.color='#75617f';" onmouseout="this.style.background='transparent';this.style.color='#475569';">
                 ${ICONS.history} History
               </a>
               <div style="border-top:1px solid #f1f5f9; margin:0.25rem 0;"></div>
@@ -178,7 +178,7 @@ async function initNavbar() {
           aria-label="Open navigation menu"
           aria-expanded="false"
           style="padding:0.5rem; border-radius:0.5rem; background:transparent; border:none; cursor:pointer; color:#475569; transition:all 200ms ease;"
-          onmouseover="this.style.background='rgba(236,72,153,0.08)'; this.style.color='#EC4899';"
+          onmouseover="this.style.background='rgba(236,72,153,0.08)'; this.style.color='#75617f';"
           onmouseout="this.style.background='transparent'; this.style.color='#475569';"
         >
           ${ICONS.menu}
@@ -195,13 +195,13 @@ async function initNavbar() {
         <div style="max-width:1280px; margin:0 auto; padding:1rem 1.5rem; display:flex; flex-direction:column; gap:0.25rem;">
           ${navLinks.map(l => `
             <a href="${l.href}"
-               style="display:block; padding:0.625rem 0.875rem; border-radius:0.5rem; font-family:'Raleway',sans-serif; font-size:0.9375rem; font-weight:${currentPage === l.href ? '600' : '500'}; color:${currentPage === l.href ? '#EC4899' : '#475569'}; background:${currentPage === l.href ? 'rgba(236,72,153,0.08)' : 'transparent'}; text-decoration:none; cursor:pointer; transition:all 200ms ease;"
+               style="display:block; padding:0.625rem 0.875rem; border-radius:0.5rem; font-family:'Raleway',sans-serif; font-size:0.9375rem; font-weight:${currentPage === l.href ? '600' : '500'}; color:${currentPage === l.href ? '#75617f' : '#475569'}; background:${currentPage === l.href ? 'rgba(236,72,153,0.08)' : 'transparent'}; text-decoration:none; cursor:pointer; transition:all 200ms ease;"
             >${l.label}</a>
           `).join('')}
           ${!isAuth ? `
             <div style="display:flex; gap:0.5rem; margin-top:0.5rem;">
-              <a href="login.html" style="flex:1; padding:0.625rem; border-radius:0.5rem; text-align:center; font-family:'Raleway',sans-serif; font-weight:600; font-size:0.875rem; color:#EC4899; border:1.5px solid #EC4899; text-decoration:none; cursor:pointer;">Sign In</a>
-              <a href="register.html" style="flex:1; padding:0.625rem; border-radius:0.5rem; text-align:center; font-family:'Raleway',sans-serif; font-weight:600; font-size:0.875rem; color:white; background:linear-gradient(135deg,#EC4899,#c026d3); text-decoration:none; cursor:pointer;">Get Started</a>
+              <a href="login.html" style="flex:1; padding:0.625rem; border-radius:0.5rem; text-align:center; font-family:'Raleway',sans-serif; font-weight:600; font-size:0.875rem; color:#75617f; border:1.5px solid #75617f; text-decoration:none; cursor:pointer;">Sign In</a>
+              <a href="register.html" style="flex:1; padding:0.625rem; border-radius:0.5rem; text-align:center; font-family:'Raleway',sans-serif; font-weight:600; font-size:0.875rem; color:white; background:linear-gradient(135deg,#75617f,#8a7a91); text-decoration:none; cursor:pointer;">Get Started</a>
             </div>
           ` : `
             <button onclick="window.__navbarLogout()" style="display:flex;align-items:center;gap:0.5rem;padding:0.625rem 0.875rem;border-radius:0.5rem;font-family:'Raleway',sans-serif;font-size:0.9375rem;font-weight:500;color:#ef4444;background:none;border:none;cursor:pointer;margin-top:0.25rem;transition:all 200ms;" onmouseover="this.style.background='rgba(239,68,68,0.07)';" onmouseout="this.style.background='transparent';">
